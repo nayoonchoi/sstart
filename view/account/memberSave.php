@@ -2,19 +2,6 @@
 session_start();
 
 
-//받은 이미지 파일 처리
-$member_image=$_FILES['image']['name'];//이미지 이름
-$target='..\account\memberimg\\'.$member_image;//이미지를 저장할 경로
-
-$tmp_name=$_FILES['image']['tmp_name'];//이미지가 임시로 저장되는 경로
-
-move_uploaded_file($tmp_name,$target);//임시 경로에 잇는 파일을 지정한 위치로 이동
-//이미지가 해당 파일에 저장됨 $target에는 진짜 저장된 이미지 경로가 저장됨
-
-
-//$_SESSION['member_image']=$target;// 실험차 써본거
-//echo "<img src=".$_SESSION['member_image'].">"; //결과 확인용 출력
-
 $conn=mysqli_connect('localhost','root','123456','art_platform');//디비 접속
 if(mysqli_connect_errno())
 {
@@ -46,17 +33,32 @@ if(mysqli_connect_errno())
  echo $_POST['gendertype'];echo "<br/>\n";
  echo $_POST['email'];echo "<br/>\n";
 */
+
+$path="..\account\memberimg\\".$stid;
+mkdir($path);
+$path2="..\account\memberimg\\".$stid."\\img";
+mkdir($path2);
+//받은 이미지 파일 처리
+$member_image1=$_FILES['image']['name'];//이미지 이름
+$member_image=preg_replace("/\s+/","",$_member_image1);
+//$target=$path.$member_image;//이미지를 저장할 경로
+$target="..\account\memberimg\\".$stid."\\".$member_image;
+$tmp_name=$_FILES['image']['tmp_name'];//이미지가 임시로 저장되는 경로
+
+move_uploaded_file($tmp_name,$target);//임시 경로에 잇는 파일을 지정한 위치로 이동
+//이미지가 해당 파일에 저장됨 $target에는 진짜 저장된 이미지 경로가 저장됨
+
 if(strlen($_POST['password1']) < 8)//비밀번호 8자 이하일수 없음
 {
   header("Content-Type: text/html; charset=UTF-8");
-  echo "<script>alert('비밀번호 형식이 맞지 않습니다');";
+  echo "<script>alert('비밀번호 형식이 맞지 않습니다.');";
   echo "window.location.replace('register.php');</script>";
   exit;
 }
 if(is_numeric($_POST['password1']))
 {
   header("Content-Type: text/html; charset=UTF-8");
-  echo "<script>alert('비밀번호 형식이 맞지 않습니다');";
+  echo "<script>alert('비밀번호 형식이 맞지 않습니다.');";
   echo "window.location.replace('register.php');</script>";
   exit;
 }
@@ -96,26 +98,39 @@ if(mysqli_num_rows($result) >0)//동일한 username 존재
 {
   header("Content-Type: text/html; charset=UTF-8");
   echo "<script>alert('사용중인 id 입니다. 다른 username을 입력해 주세요.');";
-  echo "window.location.replace('login.php');</script>";
+  echo "window.location.replace('register.php');</script>";
   //header('Location: ./register.php');
   exit;
+
+
 }
 else {
 
+  $sql = "SELECT * FROM member where member_stid='$stid'";
+  $result=mysqli_query($conn,$sql);
+  if(mysqli_num_rows($result) >0)//동일한 학번 존재
+  {
 
- $sql = "insert into member( member_username,member_pw,member_name, member_nickname, member_phone, member_stid, member_gender,member_email,member_image)";
- $sql = $sql. "values('$username','$password','$name','$nickname','$phone','$stid','$gendertype','$email','$member_image')";
+      header("Content-Type: text/html; charset=UTF-8");
+      echo "<script>alert('사용중인 학번 입니다. 이미 가입된 사용자 입니다.');";
+      echo "window.location.replace('register.php');</script>";
+      //header('Location: ./register.php');
+      exit;
+  }
+  else {
+    $sql = "insert into member( member_username,member_pw,member_name, member_nickname, member_phone, member_stid, member_gender,member_email,member_image)";
+    $sql = $sql. "values('$username','$password','$name','$nickname','$phone','$stid','$gendertype','$email','$member_image')";
 
- if(mysqli_query($conn,$sql))
- {
-   echo 'success inserting';
- }else{
-  echo 'fail to insert sql';
- }
-
- mysqli_close($conn);
-
- header('Location: ./registered.php');
-exit;
+    if(mysqli_query($conn,$sql))
+    {
+      echo 'success inserting';
+    }else{
+     echo 'fail to insert sql';
+    }
+  }
 }
+mysqli_close($conn);
+
+header('Location: ./registered.php');
+exit;
 ?>

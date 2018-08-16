@@ -16,22 +16,26 @@ if(mysqli_connect_errno())
 //삭제하려는 작품 artwork_id 넘겨받음
 $artwork_id=$_POST['want_delete'];
 
+
 //테이블에서 삭제하는 쿼리문 작성
 $sql = "delete from artwork where artwork_id=$artwork_id";
+//서버에서 이미지파일 삭제
+unlink($_POST['filename']);
 
-
+//쿼리 실행
 if(mysqli_query($conn,$sql))
 {
   echo "<script>alert('작품삭제 완료.');";
   echo "window.location.replace('registered.php');</script>";
 }else{
-  echo "<script>alert('작품삭제 실패.');";
+  //echo mysqli_error($conn);
+ echo "<script>alert('작품삭제 실패.');";
   echo "window.location.replace('registered.php');</script>";;
 }
 
-//
+
 mysqli_close($conn);
 exit;
-//header('Location: ./registered.php');
+header('Location: ./registered.php');
 
 ?>

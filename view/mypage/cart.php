@@ -1,4 +1,3 @@
-<!--마이페이지:등록한 작품-->
 <!doctype>
 <html>
 <head>
@@ -8,7 +7,7 @@
 </head>
 
 <body style="height:1500px">
-
+      
   <?php
     require('../../include/header.php');
   ?>
@@ -16,43 +15,63 @@
     <?php
       require('../../include/navbar.php');
     ?>
-
+  
   </navbar>
-  <div class="container">
-        <section class="content" >
-          <div  id="banner-left">
-            <?php require('../mypage/banner-left.php');?>
-          </div>
+
+    <div class="container">
+            </header>
+            <section class="content" >
+              <div  id="banner-left">
+    		          <?php require('./banner-left.php');?>
+    	       	</div>
             <main>
               <section class="content-row">
 
-
-                                <div class="box">
-                                   <ul class="nav nav-pills flex-column" style="font-weight:bolder; height:35px;">
-                                    <li class="nav-item" style="display:flex; align-items: center;">
-                                      <a class="nav-link " href="#"style="color:#282f3a;">등록된 작품</a>
-                                    <li>
-                                    <ul>
-                                </div>
-
-                  <div >
-                    <?php require('./get_cart_db.php');?>
-
-
-
-
+                <div class="box">
+                   <ul class="nav nav-pills flex-column" style="font-weight:bolder; height:35px;">
+              			<li class="nav-item" style="display:flex; align-items: center;">
+              				<a class="nav-link " href="#"style="color:#282f3a;">장바구니에 등록된 작품</a>
+                    <li>
+                    <ul>
                 </div>
-              </section>
-              <section class="content-row">
-
 
                   <div class="content">
+                  <div class="product">
+                    <img style="display:block;" src="http://www.mu-um.com/data/Exhibit/201804/1524458173.jpg" alt="작품사진" width="100%" height="200px">
+                    <div class="box-row">
+                    <h6 style="display:block;float:left;">라벤더 언덕</h6>
+                    <p style="display:block; float:right;">by 이현열</p>
+                  </div>
+                  </div>
+                  <div class="product">
+                    <img style="display:block;" src="http://www.mu-um.com/data/Exhibit/201708/1501837117.jpg" alt="작품사진" width="100%" height="200px">
+                    <div class="box-row">
+                      <h6 style="display:block; float:left;">걸어가는 지푸라기</h6>
+                    <p style="display:block; float:right;">by 김한울</p>
+                    </div>
+                  </div>
+                  <div class="product">
+                    <img style="display:block;" src="http://www.gallerymigo.co.kr/works_data/2012-12-01/works/%E2%93%92%EC%82%AC%ED%83%80,%20SaTARK%2017,%2080%20x%2080cm,%20archival%20pigment%20print,%202011,%20Printed%20by%20Lee%20dong-gun.jpg" alt="작품사진" width="100%" height="200px">
+                    <div class="box-row">
+                    <h6 style="display:block;float:left;">무제</h6>
+                    <p style="display:block; float:right;">by 사타</p>
+                    </div>
+                      </div>
 
-
-
-
-
-
+                  <div class="product">
+                    <img style="display:block;" src="http://www.artrie.com/HyAdmin/upload/goodFile/GOODS3_1501810154.JPG" alt="작품사진" width="100%" height="200px">
+                    <div class="box-row">
+                    <h6 style="display:block;float:left;">꽃잔치</h6>
+                    <p style="display:block; float:right;">by 이수동</p>
+                    </div>
+                  </div>
+                  <div class="product">
+                    <img style="display:block;" src="http://blogimg.ohmynews.com/attach/3590/1289839816.jpg" alt="작품사진" width="100%" height="200px">
+                    <div class="box-row">
+                    <h6 style="display:block;float:left;">결혼</h6>
+                    <p style="display:block; float:right;">by 유현경</p>
+                    </div>
+                  </div>
                 </div>
               </section>
               <div id="page">
@@ -67,6 +86,58 @@
                 <a href="#">&raquo;</a>
               </div>
             </div>
+
+
+            <div class="box">
+               <ul class="nav nav-pills flex-column" style="font-weight:bolder; height:35px;">
+                <li class="nav-item" style="display:flex; align-items: center;">
+                  <a class="nav-link " href="#"style="color:#282f3a;">최근에 본 작품</a>
+                <li>
+                <ul>
+            </div>
+            <section class="content-row">
+
+
+                <div class="content">
+                <div class="product">
+                  <img style="display:block;" src="http://www.mu-um.com/data/Exhibit/201804/1524458173.jpg" alt="작품사진" width="100%" height="200px">
+                  <div class="box-row">
+                  <h6 style="display:block;float:left;">라벤더 언덕</h6>
+                  <p style="display:block; float:right;">by 이현열</p>
+                </div>
+                </div>
+                <div class="product">
+                  <img style="display:block;" src="http://www.mu-um.com/data/Exhibit/201708/1501837117.jpg" alt="작품사진" width="100%" height="200px">
+                  <div class="box-row">
+                    <h6 style="display:block; float:left;">걸어가는 지푸라기</h6>
+                  <p style="display:block; float:right;">by 김한울</p>
+                  </div>
+                </div>
+                <div class="product">
+                  <img style="display:block;" src="http://www.gallerymigo.co.kr/works_data/2012-12-01/works/%E2%93%92%EC%82%AC%ED%83%80,%20SaTARK%2017,%2080%20x%2080cm,%20archival%20pigment%20print,%202011,%20Printed%20by%20Lee%20dong-gun.jpg" alt="작품사진" width="100%" height="200px">
+                  <div class="box-row">
+                  <h6 style="display:block;float:left;">무제</h6>
+                  <p style="display:block; float:right;">by 사타</p>
+                  </div>
+                    </div>
+
+                <div class="product">
+                  <img style="display:block;" src="http://www.artrie.com/HyAdmin/upload/goodFile/GOODS3_1501810154.JPG" alt="작품사진" width="100%" height="200px">
+                  <div class="box-row">
+                  <h6 style="display:block;float:left;">꽃잔치</h6>
+                  <p style="display:block; float:right;">by 이수동</p>
+                  </div>
+                </div>
+                <div class="product">
+                  <img style="display:block;" src="http://blogimg.ohmynews.com/attach/3590/1289839816.jpg" alt="작품사진" width="100%" height="200px">
+                  <div class="box-row">
+                  <h6 style="display:block;float:left;">결혼</h6>
+                  <p style="display:block; float:right;">by 유현경</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
             </main>
 
         </section>
