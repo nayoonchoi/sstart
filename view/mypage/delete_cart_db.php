@@ -33,6 +33,6 @@ if(mysqli_query($conn,$sql))
 //
 mysqli_close($conn);
 exit;
-//header('Location: ./registered.php');
+//header('Location: ./registered.php'
 
 ?>
