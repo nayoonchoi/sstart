@@ -2,7 +2,6 @@
     <div class="container">
       <div class="container-row">
         <?php if(!isset($_SESSION['member_username']) || !isset($_SESSION['member_name'])) { ?>
-          <div ><a class="nav-link" href="/HI_ART/view/manage/qna/index.php"style="color:#282f3a;padding-right:0px; ">문의사항</a></div>
           <div ><a class="nav-link" href="/HI_ART/view/manage/denial_access.php"style="color:#282f3a;   padding-right:0px;">장바구니</a></div>
           <div ><a class="nav-link" href="/HI_ART/view/manage/denial_access.php"style="color:#282f3a;padding-right:0px; ">마이페이지</a></div>
           <div ><a class="nav-link" href="/HI_ART/view/account/register.php"style="color:#282f3a;  padding-right:0px;">회원가입</a></div>
@@ -10,7 +9,6 @@
         <?php } else {
           $user_name = $_SESSION['member_name'];
         ?>
-          <div ><a class="nav-link" href="/HI_ART/view/manage/qna/index.php"style="color:#282f3a;padding-right:0px; ">문의사항</a></div>
           <div ><a class="nav-link" href="/HI_ART/view/mypage/cart.php"style="color:#282f3a;   padding-right:0px;">장바구니</a></div>
           <div ><a class="nav-link" href="/HI_ART/view/mypage/mypage.php"style="color:#282f3a;padding-right:0px; ">마이페이지</a></div>
           <div ><a class="nav-link" href="/HI_ART/view/mypage/mypage.php"style="color:#282f3a;padding-right:0px; "><?php echo "$user_name 님"; ?></a></div>

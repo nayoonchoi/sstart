@@ -134,13 +134,13 @@ $paging = '<ul>'; // 페이징을 저장할 변수
 //첫 페이지가 아니라면 처음 버튼을 생성
 
 if($page != 1) {
-$paging .= '<li class="page page_start"><a href="./qna.php?page=1' . $subString . '">처음</a></li>';
+$paging .= '<li class="page page_start"><a href="./request.php?page=1' . $subString . '">처음</a></li>';
 }
 
 //첫 섹션이 아니라면 이전 버튼을 생성
 
 if($currentSection != 1) {
-$paging .= '<li class="page page_prev"><a href="./qna.php?page=' . $prevPage . $subString . '">이전</a></li>';
+$paging .= '<li class="page page_prev"><a href="./request.php?page=' . $prevPage . $subString . '">이전</a></li>';
 }
 
 
@@ -153,7 +153,7 @@ for($i = $firstPage; $i <= $lastPage; $i++) {
 
   } else {
 
-$paging .= '<li class="page"><a href="./qna.php?page=' . $i . $subString . '">' . $i . '</a></li>';
+$paging .= '<li class="page"><a href="./request.php?page=' . $i . $subString . '">' . $i . '</a></li>';
   }
 
 }
@@ -163,7 +163,7 @@ $paging .= '<li class="page"><a href="./qna.php?page=' . $i . $subString . '">' 
 //마지막 섹션이 아니라면 다음 버튼을 생성
 
 if($currentSection != $allSection) {
-$paging .= '<li class="page page_next"><a href="./qna.php?page=' . $nextPage . $subString . '">다음</a></li>';
+$paging .= '<li class="page page_next"><a href="./request.php?page=' . $nextPage . $subString . '">다음</a></li>';
 }
 
 
@@ -172,7 +172,7 @@ $paging .= '<li class="page page_next"><a href="./qna.php?page=' . $nextPage . $
 
 if($page != $allPage) {
 
-	$paging .= '<li class="page page_end"><a href="./qna.php?page=' . $allPage . $subString . '">끝</a></li>';
+	$paging .= '<li class="page page_end"><a href="./request.php?page=' . $allPage . $subString . '">끝</a></li>';
 }
 
 $paging .= '</ul>';
@@ -221,7 +221,7 @@ $result = $db->query($sql);
       </div>
        <main>
          	<meta charset="utf-8" />
-         	<title>QNA게시판 | QNA WRITE</title>
+         	<title>request게시판 | request WRITE</title>
          	<link rel="stylesheet" href="./normalize.css" />
          	<link rel="stylesheet" href="./board.css" />
 
@@ -229,11 +229,11 @@ $result = $db->query($sql);
 
          	<article class="boardArticle">
 
-         		<h3>QNA 게시판</h3>
+         		<h3>request 게시판</h3>
 
          		<table>
 
-         			<caption class="readHide">QNA 게시판</caption>
+         			<caption class="readHide">request 게시판</caption>
 
          			<thead>
 
@@ -297,7 +297,7 @@ $result = $db->query($sql);
 
          				<tr>
          					<td class="no"><?php echo $row['id']?></td>
-         					<td class="title"><a href="./qnaview.php?bno=<?php echo $row['id']?>"><?php echo $row['title']?></a></td>
+         					<td class="title"><a href="./requestview.php?bno=<?php echo $row['id']?>"><?php echo $row['title']?></a></td>
          					<td class="author"><?php echo $row['author']?></td>
          					<td class="date"><?php echo $row['created']?></td>
          					<td class="hit"><?php echo $row['hit']?>
@@ -313,7 +313,7 @@ $result = $db->query($sql);
          		</table>
              <div class="btnSet">
 
-             				<a href="./qnawrite.php" class="btnWrite btn">글쓰기</a>
+             				<a href="./requestwrite.php" class="btnWrite btn">글쓰기</a>
 
              			</div>
 

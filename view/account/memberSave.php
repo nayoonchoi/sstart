@@ -131,13 +131,14 @@ else {
  if(mysqli_query($conn,$sql))
  {
    echo 'success inserting';
+
+    mysqli_close($conn);
+
+    header('Location: ./registered.php');
  }else{
   echo 'fail to insert sql';
  }
 
- mysqli_close($conn);
-
- header('Location: ./registered.php');
 exit;
 }
 ?>

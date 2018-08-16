@@ -45,8 +45,7 @@
         {
           $_SESSION['member_username']=$user_id;//로그인 성공시 세션 변수 만듬
           $_SESSION['member_name']=$row['member_name'];//로그인한 회원의 이름 저장
-          $_SESSION['authorized']=$row['member_authority'];//권한이 있는 사용자임을 나타내는 세션변수
-          $_SESSION['member_stid']=$row['member_stid'];//로그인한 회원의 학번 저장
+          $_SESSION['authorized']='1';//권한이 있는 사용자임을 나타내는 세션변수
           if(isset($_SESSION['member_username']))//세션변수가 참일때
           {
               //로그인 성공시 연결할 페이지 입력

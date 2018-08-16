@@ -5,12 +5,8 @@
 
 
 	//$_POST['bno']이 있을 때만 $bno 선언
+	$bNo = $_POST['bno'];
 
-	if(isset($_POST['bno'])) {
-
-		$bNo = $_POST['bno'];
-
-	}
 
 
 
@@ -24,7 +20,7 @@ if(isset($bNo)) {
 
 	//삭제 할 글의 비밀번호가 입력된 비밀번호와 맞는지 체크
 
-	$sql = 'select count(password) as cnt from message where password="' . $bPassword . '" and id = ' . $bNo;
+	$sql = 'select count(password) as cnt from message where id = ' . $bNo;
 
 	$result = $db->query($sql);
 

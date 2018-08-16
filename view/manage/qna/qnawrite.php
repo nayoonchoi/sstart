@@ -131,8 +131,9 @@
 
 								} else { ?>
 
-									<input type="text" name="bID" id="bID">
 
+																		<?php echo $_SESSION['member_username'];?>
+																		<input type="hidden" name="bID" value="<?php echo $_SESSION['member_username']?>">
 								<?php } ?>
 
                         </tr>

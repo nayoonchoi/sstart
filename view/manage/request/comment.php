@@ -1,5 +1,5 @@
 <?php
-require_once('./qnadb.php');
+require_once('./requestdb.php');
 
 	$sql = 'select * from requestcom where co_no=co_order and b_no=' . $bNo;
 

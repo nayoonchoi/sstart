@@ -24,7 +24,7 @@ $seller_id=$row['member_id'];//seller_id 변수에  등록한 놈의 member_id�
 //seller_id를 알아 냈으니깐 그 seller_id로 등록된 작품이 있는지 뭔지 꺼내와야함
 $sql = "SELECT * FROM artwork where seller_id='{$seller_id}'";
 $result=mysqli_query($conn,$sql);
-//$row1 = mysqli_fetch_assoc($result);
+$row1 = mysqli_fetch_assoc($result);
 
 if(mysqli_num_rows($result) >0)
 {
@@ -64,16 +64,9 @@ if(mysqli_num_rows($result) >0)
 
       echo "</div>";//product-description 끝
       echo "</div>";//product-box 끝
-
+      $temp=$row2['artwork_id'];
       echo "<div class=\"buttonlayout-row\" >";
-        //echo '<div id="button"><a href="./alter_artwork.php" class="btn btn-info " role="button" >작품 수정하기</a></div>';
-        echo '<form method="post" action="alter_artwork.php">';
-        echo '<input type="hidden" name="want_alter"';
-        echo ' value="';
-        echo $row2['artwork_id'];
-        echo '">';
-        echo '<div id="button"><button type="submit" class="btn btn-info ">작품 수정하기</button></div>';
-        echo '</form>';
+        echo '<div id="button"><a href="./alter_artwork.php" class="btn btn-info " role="button" >작품 수정하기</a></div>';
         echo '<form method="post" action="delete_artwork_db.php">';
         echo '<input type="hidden" name="want_delete"';
         echo ' value="';
@@ -86,8 +79,5 @@ if(mysqli_num_rows($result) >0)
       echo "</div>";
 
     }
-}else{
-  echo "<p>등록한 작품이 없습니다.</p>";  echo "<br/>\n";
 }
-mysqli_close($conn);
 ?>

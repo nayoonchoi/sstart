@@ -4,7 +4,10 @@ mysqli_select_db($conn, "opentutorials");
 $sql = "INSERT INTO message (title,description,author,created) VALUES('".$_POST['title']."', '".$_POST['description']."', '".$_POST['author']."', now())";
 $result = mysqli_query($conn, $sql);
 header('Location: http://localhost/HI_ART/index.php')
-*/
+*/if(!isset($_SESSION))
+{
+  session_start();
+}
 ?>
 
 <?php
@@ -31,6 +34,7 @@ header('Location: http://localhost/HI_ART/index.php')
   $bPassword = $_POST['bPassword'];
 
 	$bTitle = $_POST['bTitle'];
+	$bSendto = $_POST['bSendto'];
 
 
   //글 수정
@@ -81,7 +85,7 @@ header('Location: http://localhost/HI_ART/index.php')
 
   } else {
 //	$sql = 'insert into message (title,description,author,created) values("' . $bTitle . '", "' . $bContent . '", "' . $bID . '", now()))';
-  $sql = "INSERT INTO message (title,author,password,created) VALUES('".$_POST['bTitle']."', '".$_POST['bID']."', '".$_POST['bPassword']."', now())";
+  $sql = "INSERT INTO message (title,author,password,created,sendto) VALUES('".$_POST['bTitle']."', '".$_SESSION['member_username']."', '".$_POST['bPassword']."', now(), '".$_POST['bSendto']."')";
   $msgState = '등록';
 
   }

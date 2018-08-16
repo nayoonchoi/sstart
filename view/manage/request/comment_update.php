@@ -3,7 +3,7 @@
 
 <?php
 
-	require_once('./qnadb.php');
+	require_once('./requestdb.php');
 
   $w = '';
 
@@ -168,7 +168,7 @@
 
   			alert('댓글이 정상적으로 <?php echo $msg?>되었습니다.');
 
-  			location.replace("./qnaview.php?bno=<?php echo $bNo?>");
+  			location.replace("./requestview.php?bno=<?php echo $bNo?>");
 
   		</script>
 
