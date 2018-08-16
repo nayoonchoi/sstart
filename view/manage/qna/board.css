@@ -9,11 +9,11 @@
 .boardArticle .date {width:100px;text-align:center}
 .boardArticle .hit {width:40px;text-align:center}
 */
-.boardArticle {width: 800px;}
+.boardArticle {width: 720px;}
 
 /* 글목록 */
 
-.boardArticle table {width: 800px;}
+.boardArticle table {width: 720px;}
 
 .boardArticle th {padding: 5px 0; border-top: 2px solid #666; border-bottom: 1px solid #666;}
 .boardArticle tr: hover {background: #eee;}

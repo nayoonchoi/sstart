@@ -110,7 +110,7 @@
 </div>
 <div>
   <label for="id_exhibit">작품을 전시했던 전시회(있다면):</label>
-  <input  class="form-control"type="text" name="exhibition" id="id_exhibit"  />
+  <input  class="form-control"type="text" name="exhibition" required id="id_exhibit" />
 </div>
 <div class="form-group">
   <label for="id_comment">작품설명:</label>
