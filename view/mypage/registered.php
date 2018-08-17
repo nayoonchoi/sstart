@@ -23,7 +23,7 @@
           <div  id="banner-left">
             <?php require('./banner-left.php');?>
           </div>
-            <main>
+            <main style="justify-content:flex-start;">
               <section class="content-row">
 
 
@@ -55,6 +55,7 @@
 
                 </div>
               </section>
+
               <div id="page">
               <div class="pagination">
                 <a href="#">&laquo;</a>
@@ -67,7 +68,7 @@
                 <a href="#">&raquo;</a>
               </div>
             </div>
-            </main>
+  </main>
 
         </section>
 
