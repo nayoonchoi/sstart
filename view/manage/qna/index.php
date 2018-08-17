@@ -220,6 +220,7 @@ $result = $db->query($sql);
       <?php require('../../../include/main_banner_left.php'); ?>
       </div>
        <main>
+				 <centerbox>
          	<meta charset="utf-8" />
          	<title>QNA게시판 | QNA WRITE</title>
          	<link rel="stylesheet" href="./normalize.css" />
@@ -347,7 +348,7 @@ $result = $db->query($sql);
 
          </body>
 
-
+			 </centerbox>
        </main>
     </section>
   </div>
