@@ -1,3 +1,11 @@
+body{
+  display:flex;
+  flex-direction:column;
+  min-width: 1200px;
+}
+#form-box img{
+  margin-bottom: 15px;
+}
 .container{
     display: flex;
     flex-direction: column;
@@ -29,6 +37,7 @@ min-width: 1200px;
 main-img{
   border-right:1px solid gray;
   padding-right:10px;
+  width: 662px;
 }
 header{
 
@@ -42,10 +51,11 @@ header{
 
 footer{
     border-top:1px solid gray;
-    padding:20px;
+    padding:10px;
     text-align: center;
     font-family: 'Jua', sans-serif;
-
+    min-width: 1200px;
+    flex-shrink: 0;
 }
 
 footer a{
@@ -78,6 +88,19 @@ footer a{
   display:flex;
   flex-direction:row;
 
+}
+navbar{
+  min-width: 1200px;
+  flex-shrink: 0;
+}
+centerbox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top:20px;
+}
+centerbox h5{
+  margin-bottom: 20px;
 }
 main{
     min-width: 1000px;
@@ -215,11 +238,12 @@ align-self: flex-end;
 justify-content:flex-end;
 flex-wrap:nowrap;
 flex-shrink: 0;
-margin-left:150px;
+margin-left:170px;
 }
 .top
 {
-
+  min-width: 1200px;
+  flex-shrink: 0;
 
 background-color: #cde2b3;
 
@@ -256,6 +280,9 @@ background-color: #cde2b3;
     color: #000;
     font-size: 35px;
     font-weight: bold;
+}
+img#blah {
+    margin-top: 15px;
 }
 #login {
   align-self: center;
