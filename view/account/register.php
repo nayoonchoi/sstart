@@ -109,10 +109,16 @@
 </div>
 <div>
   <label for="id_gender">성별:</label>
-  <select name ="gendertype">
-    <option value ="male">남자</option>
-    <option value="female">여자</option>
-  </select>
+  <div class="form-check-inline">
+  <label class="form-check-label">
+    <input type="radio" name="gendertype" class="form-check-input"  value="male">남자
+  </label>
+  </div>
+  <div class="form-check-inline">
+  <label class="form-check-label">
+    <input type="radio" name="gendertype" class="form-check-input" value="female">여자
+  </label>
+  </div>
 </div>
 <div>
   <label for="id_email">이메일:</label>
