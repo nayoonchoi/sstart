@@ -33,74 +33,85 @@
                 <ul>
             </div>
 
-                  <div >
-                    <?php
-                    if(!isset($_SESSION))
-                    {
-                      session_start();
-                    }
-                    $conn=mysqli_connect('localhost','root','123456','art_platform');//디비 접속
-                    if(mysqli_connect_errno())
-                    {
-                      echo "Failed to connect to mysql:". mysqli_connect_errno();
-                    }
+                  <div class="content">
+                  <div class="product">
+                    <img style="display:block;" src="http://www.mu-um.com/data/Exhibit/201804/1524458173.jpg" alt="작품사진" width="100%" height="200px">
+                    <div class="box-row">
+                    <h6 style="display:block;float:left;">라벤더 언덕</h6>
+                    <p style="display:block; float:right;">by 이현열</p>
+                  </div>
+                  </div>
+                  <div class="product">
+                    <img style="display:block;" src="http://www.mu-um.com/data/Exhibit/201708/1501837117.jpg" alt="작품사진" width="100%" height="200px">
+                    <div class="box-row">
+                      <h6 style="display:block; float:left;">걸어가는 지푸라기</h6>
+                    <p style="display:block; float:right;">by 김한울</p>
+                    </div>
+                  </div>
+                  <div class="product">
+                    <img style="display:block;" src="http://www.gallerymigo.co.kr/works_data/2012-12-01/works/%E2%93%92%EC%82%AC%ED%83%80,%20SaTARK%2017,%2080%20x%2080cm,%20archival%20pigment%20print,%202011,%20Printed%20by%20Lee%20dong-gun.jpg" alt="작품사진" width="100%" height="200px">
+                    <div class="box-row">
+                    <h6 style="display:block;float:left;">무제</h6>
+                    <p style="display:block; float:right;">by 사타</p>
+                    </div>
+                      </div>
 
-                    //전시정보 테이블에서 가져오는 쿼리문 작성
-                    $sql = "SELECT * FROM exhibition";
-
-                    //쿼리실행
-                    $result=mysqli_query($conn,$sql);
-
-                    if(mysqli_num_rows($result) >0)
-                    {
-                        while($row2 = mysqli_fetch_assoc($result))
-                        {
-                          date_default_timezone_set("Asia/Seoul");
-                          echo date("Y-m-d"); echo "<br/>\n";
-                          $image_dir="..\..\show_img\\";
-                          $image_path=$image_dir.$row2['exhibit_image'];
-                          echo "<div class=\"product-row\" >";
-                          echo '<img src=';
-                          echo $image_path;
-                          echo ' , alt="이미지를 불러올 수 없습니다" ';
-                          echo 'style= "width:250px; height:250px;">';
-                          echo "<div class=\"product\">";
-                          echo "<div class=\"product-box\">";
-                          echo "<div class=\"product-description\">";
-                          echo "<description1>";
-                          echo "전시 제목: ".$row2['exhibit_title'];  echo "<br/>\n";
-                          echo "전시 종류: ".$row2['exhibit_kinds'];  echo "<br/>\n";
-                          echo "전시 시작 일자: ".$row2['exhibit_sdate'];  echo "<br/>\n";
-                          echo "전시 종료 일자: ".$row2['exhibit_edate'];  echo "<br/>\n";
-                          echo "전시 장소: ".$row2['exhibit_place'];  echo "<br/>\n";
-
-
-
-                          echo "</description1>";
-                          echo "<description2>";
-                          echo "전시회 설명:";
-                          echo "<br/>\n";
-                          echo $row2['exhibit_details'];
-                          echo "</description2>";
-
-                          echo "</div>";//product-description 끝
-                          echo "</div>";//product-box 끝
+                  <div class="product">
+                    <img style="display:block;" src="http://www.artrie.com/HyAdmin/upload/goodFile/GOODS3_1501810154.JPG" alt="작품사진" width="100%" height="200px">
+                    <div class="box-row">
+                    <h6 style="display:block;float:left;">꽃잔치</h6>
+                    <p style="display:block; float:right;">by 이수동</p>
+                    </div>
+                  </div>
+                  <div class="product">
+                    <img style="display:block;" src="http://blogimg.ohmynews.com/attach/3590/1289839816.jpg" alt="작품사진" width="100%" height="200px">
+                    <div class="box-row">
+                    <h6 style="display:block;float:left;">결혼</h6>
+                    <p style="display:block; float:right;">by 유현경</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <section class="content-row">
 
 
-                          echo "</div>";
-                          echo "</div>";
+                  <div class="content">
+                  <div class="product">
+                    <img style="display:block;" src="http://www.mu-um.com/data/Exhibit/201804/1524458173.jpg" alt="작품사진" width="100%" height="200px">
+                    <div class="box-row">
+                    <h6 style="display:block;float:left;">라벤더 언덕</h6>
+                    <p style="display:block; float:right;">by 이현열</p>
+                  </div>
+                  </div>
+                  <div class="product">
+                    <img style="display:block;" src="http://www.mu-um.com/data/Exhibit/201708/1501837117.jpg" alt="작품사진" width="100%" height="200px">
+                    <div class="box-row">
+                      <h6 style="display:block; float:left;">걸어가는 지푸라기</h6>
+                    <p style="display:block; float:right;">by 김한울</p>
+                    </div>
+                  </div>
+                  <div class="product">
+                    <img style="display:block;" src="http://www.gallerymigo.co.kr/works_data/2012-12-01/works/%E2%93%92%EC%82%AC%ED%83%80,%20SaTARK%2017,%2080%20x%2080cm,%20archival%20pigment%20Printedt,%202011,%20Printed%20by%20Lee%20dong-gun.jpg" alt="작품사진" width="100%" height="200px">
+                    <div class="box-row">
+                    <h6 style="display:block;float:left;">무제</h6>
+                    <p style="display:block; float:right;">by 사타</p>
+                    </div>
+                      </div>
 
-                        }
-                    }else{
-                      echo "<p>등록된 전시회가 없습니다.</p>";  echo "<br/>\n";
-                    }
-                    mysqli_close($conn);
-                    ?>
-
-
-
-
-
+                  <div class="product">
+                    <img style="display:block;" src="http://www.artrie.com/HyAdmin/upload/goodFile/GOODS3_1501810154.JPG" alt="작품사진" width="100%" height="200px">
+                    <div class="box-row">
+                    <h6 style="display:block;float:left;">꽃잔치</h6>
+                    <p style="display:block; float:right;">by 이수동</p>
+                    </div>
+                  </div>
+                  <div class="product">
+                    <img style="display:block;" src="http://blogimg.ohmynews.com/attach/3590/1289839816.jpg" alt="작품사진" width="100%" height="200px">
+                    <div class="box-row">
+                    <h6 style="display:block;float:left;">결혼</h6>
+                    <p style="display:block; float:right;">by 유현경</p>
+                    </div>
+                  </div>
                 </div>
               </section>
               <div id="page">

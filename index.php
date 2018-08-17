@@ -35,22 +35,22 @@
           <li data-target="#demo" data-slide-to="2"></li>
         </ul>
         <div class="carousel-inner">
-          <div class="carousel-item active" style="width:600px; height:400px;">
-            <img src="./image/20160101_153946.jpg" alt="" width="600px" height="400px">
+          <div class="carousel-item active" style="width:660px; height:400px;">
+            <img src="./image/20160101_153946.jpg" alt="" width="650px" height="400px">
             <div class="carousel-caption">
               <h3></h3>
               <p></p>
             </div>
           </div>
-          <div class="carousel-item" style="width:600px; height:400px; ">
-            <img src="./image/badam_07.jpg" alt="Chicago" width="600px" height="400px">
+          <div class="carousel-item" style="width:660px; height:400px; ">
+            <img src="./image/badam_07.jpg" alt="Chicago" width="650px" height="400px">
             <div class="carousel-caption">
               <h3></h3>
               <p></p>
             </div>
           </div>
-          <div class="carousel-item"style="width:600px; height:400px;">
-            <img src="./image/PabloFuentesGomez_EX-_01.jpg?raw=true" alt="New York" width="600px" height="400px">
+          <div class="carousel-item"style="width:660px; height:400px;">
+            <img src="./image/PabloFuentesGomez_EX-_01.jpg?raw=true" alt="New York" width="650px" height="400px">
             <div class="carousel-caption">
               <h3></h3>
               <p></p>
