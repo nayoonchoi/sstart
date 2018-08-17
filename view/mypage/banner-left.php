@@ -24,19 +24,10 @@
 			        <a class="nav-link" href="get_authority.php"style="color:#282f3a;">판매자 권한 얻기</a>
 		         </li>
                  <?php } ?>
-<<<<<<< HEAD
 						<li class="nav-item">
 					     <a class="nav-link" href="./message"style="color:#282f3a;">쪽지 확인</a>
 				    </li>
 						<li class="nav-item">
 						 <a class="nav-link" href="leave.php"style="color:#282f3a;">회원탈퇴</a>
 						</li>
-=======
-				 <li class="nav-item">
-				 <a class="nav-link" href="leave.php"style="color:#282f3a;">회원탈퇴</a>
-				</li>
-				<li class="nav-item">
-				<a class="nav-link" href="./message"style="color:#282f3a;">쪽지 확인</a>
-				</li>
->>>>>>> 8db7a93e3264bade7e6f635e64d718cafb33f0f3
 		        </ul>
