@@ -17,6 +17,9 @@
 		         <li class="nav-item">
 			        <a class="nav-link" href="registered.php"style="color:#282f3a;">등록한 작품</a>
 		         </li>
+		         <li class="nav-item">
+			        <a class="nav-link" href="get_authority.php"style="color:#282f3a;">권한 얻기</a>
+		         </li>
                  <?php } else if($_SESSION['authorized'] == 2) { ?>
                  <li class="nav-item">
 			        <a class="nav-link" href="set_artwork.php"style="color:#282f3a;">작품 등록</a>
@@ -27,10 +30,13 @@
 		         <li class="nav-item">
 			        <a class="nav-link" href="set_exhibition.php"style="color:#282f3a;">전시회 등록</a>
 		         </li>
+		         <li class="nav-item">
+			        <a class="nav-link" href="registered_exhibition.php"style="color:#282f3a;">등록한 전시회</a>
+		         </li>
                  <?php } else {
                  ?>
                  <li class="nav-item">
-			        <a class="nav-link" href="get_authority.php"style="color:#282f3a;">판매자 권한 얻기</a>
+			        <a class="nav-link" href="get_authority.php"style="color:#282f3a;">권한 얻기</a>
 		         </li>
                  <?php } ?>
 						<li class="nav-item">

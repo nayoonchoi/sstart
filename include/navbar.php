@@ -2,7 +2,7 @@
       <div class="container2">
         <ul style="display:flex; flex-direction: row; margin-bottom:2px; padding:0px;">
           <li class="nav-item" style="flex-shrink:0" >
-            <a class="nav-link" href="/HI_ART/view/navbar/ex_info.php"style="color:#f4f5f7; font-family: 'Jua', sans-serif; ">전시정보</a>
+            <a class="nav-link" href="/HI_ART/view/navbar/exing_info.php"style="color:#f4f5f7; font-family: 'Jua', sans-serif; ">전시정보</a>
           </li>
           <?php if(!isset($_SESSION['member_username']) || !isset($_SESSION['member_name'])) { ?>
             <li class="nav-item"style="flex-shrink:0">

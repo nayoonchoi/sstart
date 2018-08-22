@@ -1,18 +1,15 @@
 <?php
 /*$conn = mysqli_connect("localhost", "root", 123456);
 mysqli_select_db($conn, "opentutorials");
-$sql = "INSERT INTO message (title,description,author,created) VALUES('".$_POST['title']."', '".$_POST['description']."', '".$_POST['author']."', now())";
+$sql = "INSERT INTO request (title,description,author,created) VALUES('".$_POST['title']."', '".$_POST['description']."', '".$_POST['author']."', now())";
 $result = mysqli_query($conn, $sql);
 header('Location: http://localhost/HI_ART/index.php')
-*/if(!isset($_SESSION))
-{
-  session_start();
-}
+*/
 ?>
 
 <?php
 
-	require_once("./messagedb.php");
+	require_once("./requestdb.php");
 
 
   //$_POST['bno']이 있을 때만 $bno 선언
@@ -34,7 +31,8 @@ header('Location: http://localhost/HI_ART/index.php')
   $bPassword = $_POST['bPassword'];
 
 	$bTitle = $_POST['bTitle'];
-	$bSendto = $_POST['bSendto'];
+
+	$bContent = $_POST['bContent'];
 
 
   //글 수정
@@ -43,7 +41,7 @@ header('Location: http://localhost/HI_ART/index.php')
 
   	//수정 할 글의 비밀번호가 입력된 비밀번호와 맞는지 체크
 
-    	$sql = 'select count(password) as cnt from message where password="' . $bPassword . '" and id = ' . $bNo;
+    	$sql = 'select count(password) as cnt from request where password="' . $bPassword . '" and id = ' . $bNo;
 
     	$result = $db->query($sql);
 
@@ -53,7 +51,7 @@ header('Location: http://localhost/HI_ART/index.php')
 
     	if($row['cnt']) {
 
-  		$sql = 'UPDATE message SET title="' . $bTitle . '" where id = ' . $bNo;
+  		$sql = 'UPDATE request SET title="' . $bTitle . '", description="' . $bContent . '" where id = ' . $bNo;
 
   		$msgState = '수정';
 
@@ -84,8 +82,8 @@ header('Location: http://localhost/HI_ART/index.php')
   //글 등록
 
   } else {
-//	$sql = 'insert into message (title,description,author,created) values("' . $bTitle . '", "' . $bContent . '", "' . $bID . '", now()))';
-  $sql = "INSERT INTO message (title,author,password,created,sendto) VALUES('".$_POST['bTitle']."', '".$_SESSION['member_username']."', '".$_POST['bPassword']."', now(), '".$_POST['bSendto']."')";
+//	$sql = 'insert into request (title,description,author,created) values("' . $bTitle . '", "' . $bContent . '", "' . $bID . '", now()))';
+  $sql = "INSERT INTO request (title,description,author,password,created) VALUES('".$_POST['bTitle']."', '".$_POST['bContent']."', '".$_POST['bID']."', '".$_POST['bPassword']."', now())";
   $msgState = '등록';
 
   }
@@ -105,7 +103,7 @@ if(empty($msg)) {
     			$bNo = $db->insert_id;
 
     		}
-//		$replaceURL = './message.php?bno=' . $bNo;
+//		$replaceURL = './request.php?bno=' . $bNo;
 $replaceURL = './';
 	} else {
 

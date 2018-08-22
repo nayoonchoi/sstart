@@ -29,11 +29,11 @@ $description=$_POST['description'];
 //세션에 저장되어있는 member_username을 가져옴
 $admin_username=$_SESSION['member_username'];
 //해당 사용자의 member_id를 $seller_id에 저장
-$sql = "SELECT member_id FROM member where member_username='$admin_username'";
+$sql = "SELECT member_nickname FROM member where member_username='$admin_username'";
 $result=mysqli_query($conn,$sql);
 $row = mysqli_fetch_assoc($result);
 
-$admin_id=$row["member_id"];
+$admin_nickname=$row["member_nickname"];
 
 /*
 echo $_POST['image']; echo "<br/>\n";
@@ -47,13 +47,13 @@ echo $_POST['exhibition']; echo "<br/>\n";
 echo $_POST['description']; echo "<br/>\n";
 */
 
-$sql = "insert into exhibition(exhibit_image,exhibit_title,exhibit_sdate,exhibit_edate,exhibit_kinds,exhibit_place,exhibit_details)";
-$sql = $sql. "values('$exhibit_image','$title','$startexhibitdate','$endexhibitdate','$kind','$place','$description')";
+$sql = "insert into exhibition(exhibit_image,exhibit_title,exhibit_sdate,exhibit_edate,exhibit_kinds,exhibit_place,exhibit_details,exhibit_adminid,exhibit_adminnick)";
+$sql = $sql. "values('$exhibit_image','$title','$startexhibitdate','$endexhibitdate','$kind','$place','$description', '$admin_username', '$admin_nickname')";
 
 if(mysqli_query($conn,$sql))
 {
   echo "<script>alert('전시 등록 완료.');";
-  echo "window.location.replace('../navbar/ex_info.php');</script>";
+  echo "window.location.replace('../navbar/exing_info.php');</script>";
 }else{
   echo "<script>alert('전시 등록 실패.');";
   echo "window.location.replace('set_exhibition.php');</script>";;

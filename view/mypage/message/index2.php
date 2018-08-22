@@ -1,5 +1,9 @@
 <?php
-	require_once("./requestdb.php");
+if(!isset($_SESSION))
+{
+  session_start();
+}
+	require_once("./messagedb.php");
  $subString = '';
  $searchColumn = '';
   /* 페이징 시작 */
@@ -56,7 +60,7 @@ if(isset($_GET['page'])) {
 
 
 
-$sql = 'select count(*) as cnt from request' . $searchSql;
+$sql = 'select count(*) as cnt from message where author = "' .$_SESSION['member_username']. '"'. $searchSql;
 $result = $db->query($sql);
 
 $row = $result->fetch_assoc();
@@ -134,13 +138,13 @@ $paging = '<ul>'; // 페이징을 저장할 변수
 //첫 페이지가 아니라면 처음 버튼을 생성
 
 if($page != 1) {
-$paging .= '<li class="page page_start"><a href="./index.php?page=1' . $subString . '">처음</a></li>';
+$paging .= '<li class="page page_start"><a href="./message.php?page=1' . $subString . '">처음</a></li>';
 }
 
 //첫 섹션이 아니라면 이전 버튼을 생성
 
 if($currentSection != 1) {
-$paging .= '<li class="page page_prev"><a href="./index.php?page=' . $prevPage . $subString . '">이전</a></li>';
+$paging .= '<li class="page page_prev"><a href="./message.php?page=' . $prevPage . $subString . '">이전</a></li>';
 }
 
 
@@ -153,7 +157,7 @@ for($i = $firstPage; $i <= $lastPage; $i++) {
 
   } else {
 
-$paging .= '<li class="page"><a href="./index.php?page=' . $i . $subString . '">' . $i . '</a></li>';
+$paging .= '<li class="page"><a href="./message.php?page=' . $i . $subString . '">' . $i . '</a></li>';
   }
 
 }
@@ -163,7 +167,7 @@ $paging .= '<li class="page"><a href="./index.php?page=' . $i . $subString . '">
 //마지막 섹션이 아니라면 다음 버튼을 생성
 
 if($currentSection != $allSection) {
-$paging .= '<li class="page page_next"><a href="./index.php?page=' . $nextPage . $subString . '">다음</a></li>';
+$paging .= '<li class="page page_next"><a href="./message.php?page=' . $nextPage . $subString . '">다음</a></li>';
 }
 
 
@@ -172,7 +176,7 @@ $paging .= '<li class="page page_next"><a href="./index.php?page=' . $nextPage .
 
 if($page != $allPage) {
 
-	$paging .= '<li class="page page_end"><a href="./index.php?page=' . $allPage . $subString . '">끝</a></li>';
+	$paging .= '<li class="page page_end"><a href="./message.php?page=' . $allPage . $subString . '">끝</a></li>';
 }
 
 $paging .= '</ul>';
@@ -185,7 +189,7 @@ $currentLimit = ($onePage * $page) - $onePage; //몇 번째의 글부터 가져�
 
 $sqlLimit = ' limit ' . $currentLimit . ', ' . $onePage; //limit sql 구문
 
-$sql = 'select * from request ' . $searchSql . ' order by id desc ' . $sqlLimit; //원하는 개수만큼 가져온다. (0번째부터 20번째까지
+$sql = 'select * from message where author = "' .$_SESSION['member_username']. '"' . $searchSql . ' order by id desc ' . $sqlLimit; //원하는 개수만큼 가져온다. (0번째부터 20번째까지
 $result = $db->query($sql);
 }
 ?>
@@ -216,12 +220,12 @@ $result = $db->query($sql);
   <div class="container">
 
     <section class="content" >
-      <div  id="banner-left">
-      <?php require('../../../include/main_banner_left.php'); ?>
-      </div>
-       <main>
+			<div  id="banner-left">
+					<?php require('./banner-left.php');?>
+			</div>
+			 <main>
          	<meta charset="utf-8" />
-         	<title>request게시판 | request WRITE</title>
+         	<title>쪽지함 | MESSAGE WRITE</title>
          	<link rel="stylesheet" href="./normalize.css" />
          	<link rel="stylesheet" href="./board.css" />
 
@@ -229,20 +233,20 @@ $result = $db->query($sql);
 
          	<article class="boardArticle">
 
-         		<h3>request 게시판</h3>
+            <h3><a href="./index.php">받은 쪽지함</a> | 보낸 쪽지함</h3>
 
          		<table>
 
-         			<caption class="readHide">request 게시판</caption>
+         			<caption class="readHide">보낸 쪽지함</caption>
 
          			<thead>
 
          				<tr>
          					<th scope="col" class="no">번호</th>
-         					<th scope="col" class="title">제목</th>
-         					<th scope="col" class="author">작성자</th>
+         					<th scope="col" class="title">내용</th>
+         					<th scope="col" class="author">받는이</th>
          					<th scope="col" class="date">작성일</th>
-         				  <th scope="col" class="hit">조회</th>
+									<th scope="col" class="del">삭제</th>
          				</tr>
 
          			</thead>
@@ -280,7 +284,7 @@ $result = $db->query($sql);
 
                                } else {
 
-         						$sql = 'select * from request order by id desc';
+         						$sql = 'select * from message order by id desc';
 
          						$result = $db->query($sql);
          //mysqli_query($conn, $sql);
@@ -297,10 +301,16 @@ $result = $db->query($sql);
 
          				<tr>
          					<td class="no"><?php echo $row['id']?></td>
-         					<td class="title"><a href="./requestview.php?bno=<?php echo $row['id']?>"><?php echo $row['title']?></a></td>
-         					<td class="author"><?php echo $row['author']?></td>
+         					<td class="title"><?php echo $row['title']?></a></td>
+         					<td class="author"><?php echo $row['sendto']?></td>
          					<td class="date"><?php echo $row['created']?></td>
-         					<td class="hit"><?php echo $row['hit']?>
+  							 <td class="del">
+								<form action="./messagedelsave.php" method="post">
+								<input type="hidden" name="bno" value="<?php echo $row['id']?>">
+		 						<button type="submit">삭제</button>
+
+								</form>
+              </td>
          				</tr>
 
          					<?php
@@ -313,7 +323,7 @@ $result = $db->query($sql);
          		</table>
              <div class="btnSet">
 
-             				<a href="./requestwrite.php" class="btnWrite btn">글쓰기</a>
+             				<a href="./messagewrite.php" class="btnWrite btn">쪽지 보내기</a>
 
              			</div>
 
@@ -324,7 +334,7 @@ $result = $db->query($sql);
              			</div>
                    <div class="searchBox">
 
-           				<form action="./index.php" method="get">
+           				<form action="./index2.php" method="get">
                      <?php $searchColumn = ''; ?>
            					<select name="searchColumn">
 
@@ -332,7 +342,7 @@ $result = $db->query($sql);
 
            						<option <?php echo $searchColumn=='description'?'selected="selected"':null?> value="description">내용</option>
 
-           						<option <?php echo $searchColumn=='author'?'selected="selected"':null?> value="author">작성자</option>
+           						<option <?php echo $searchColumn=='sendto'?'selected="selected"':null?> value="sendto">받는이</option>
 
            					</select>
 

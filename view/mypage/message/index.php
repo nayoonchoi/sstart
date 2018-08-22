@@ -1,4 +1,8 @@
 <?php
+if(!isset($_SESSION))
+{
+  session_start();
+}
 	require_once("./messagedb.php");
  $subString = '';
  $searchColumn = '';
@@ -56,7 +60,7 @@ if(isset($_GET['page'])) {
 
 
 
-$sql = 'select count(*) as cnt from message' . $searchSql;
+$sql = 'select count(*) as cnt from message where sendto = "' .$_SESSION['member_username']. '"'. $searchSql;
 $result = $db->query($sql);
 
 $row = $result->fetch_assoc();
@@ -185,7 +189,7 @@ $currentLimit = ($onePage * $page) - $onePage; //몇 번째의 글부터 가져�
 
 $sqlLimit = ' limit ' . $currentLimit . ', ' . $onePage; //limit sql 구문
 
-$sql = 'select * from message ' . $searchSql . ' order by id desc ' . $sqlLimit; //원하는 개수만큼 가져온다. (0번째부터 20번째까지
+$sql = 'select * from message where sendto = "' .$_SESSION['member_username']. '"' . $searchSql . ' order by id desc ' . $sqlLimit; //원하는 개수만큼 가져온다. (0번째부터 20번째까지
 $result = $db->query($sql);
 }
 ?>
@@ -229,7 +233,7 @@ $result = $db->query($sql);
 
          	<article class="boardArticle">
 
-         		<h3>받은 쪽지함</h3>
+         		<h3>받은 쪽지함 | <a href="./index2.php">보낸 쪽지함</a></h3>
 
          		<table>
 
@@ -242,8 +246,8 @@ $result = $db->query($sql);
          					<th scope="col" class="title">내용</th>
          					<th scope="col" class="author">보낸이</th>
          					<th scope="col" class="date">작성일</th>
-         				  <th scope="col" class="hit">답장</th>
-									<th scope="col" class="hit">삭제</th>
+         				  <th scope="col" class="send">답장</th>
+									<th scope="col" class="del">삭제</th>
          				</tr>
 
          			</thead>
@@ -301,21 +305,21 @@ $result = $db->query($sql);
          					<td class="title"><?php echo $row['title']?></a></td>
          					<td class="author"><?php echo $row['author']?></td>
          					<td class="date"><?php echo $row['created']?></td>
-         					<td class="reply">
-								 <form action="./messagewrite.php" method="get">
-										<?php $searchColumn = ''; ?>
+         					<td class="send">
+								 <form action="./messagewrite.php" method="post">
 
+									 <input type="hidden" name="bSendto" value="<?php echo $row['author']?>">
 									 <button type="submit">답장</button>
 
 								 </form>
-								 <td class="delete">
-								<form action="./messagedelsave.php" method="get">
-									 <?php $searchColumn = ''; ?>
-
-									<button type="submit">삭제</button>
+               </td>
+								 <td class="del">
+								<form action="./messagedelsave.php" method="post">
+								<input type="hidden" name="bno" value="<?php echo $row['id']?>">
+		 						<button type="submit">삭제</button>
 
 								</form>
-
+                </td>
          				</tr>
 
          					<?php

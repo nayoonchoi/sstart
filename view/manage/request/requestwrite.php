@@ -5,7 +5,7 @@
   <meta charset="utf-8">
 </head>
 <body>
-  <form action="http://localhost/HI_ART/view/manage/qnasave.php" method="POST">
+  <form action="http://localhost/HI_ART/view/manage/requestsave.php" method="POST">
     <p>제목:<input type="text" name="title"></p>
     <p>작성자: <input type="text" name="author"> </p>
     <p>본문:<textarea name="description"></textarea></P>
@@ -17,7 +17,7 @@
 
 <?php
 
-	require_once("./qnadb.php");
+	require_once("./requestdb.php");
   //$_GET['bno']이 있을 때만 $bno 선언
 
 	if(isset($_GET['bno'])) {
@@ -30,7 +30,7 @@
 
 	if(isset($bNo)) {
 
-		$sql = 'select title, description, author from qna  where id = ' . $bNo;
+		$sql = 'select title, description, author from request  where id = ' . $bNo;
 
 		$result = $db->query($sql);
 
@@ -90,7 +90,7 @@
 
          		<div id="boardWrite">
 
-         			<form action="./qnasave.php" method="post">
+         			<form action="./requestsave.php" method="post">
                  <?php
 
            				if(isset($bNo)) {
@@ -130,10 +130,9 @@
 									echo $row['author'];
 
 								} else { ?>
+												<?php echo $_SESSION['member_username'];?>
+												<input type="hidden" name="bID" value="<?php echo $_SESSION['member_username']?>">
 
-
-																		<?php echo $_SESSION['member_username'];?>
-																		<input type="hidden" name="bID" value="<?php echo $_SESSION['member_username']?>">
 								<?php } ?>
 
                         </tr>

@@ -27,7 +27,7 @@
               <p>어서 회원수정을 진행하시죠!!</p>
 
 
-<form method="post" action="/accounts/signup">
+<form method="post" action="alter_member_db.php">
 
 <input type='hidden' name='' value='' />
 <div class="contain">

@@ -16,11 +16,7 @@ if(isset($_GET['page'])) {
 
 }
 
-
-
 /* 검색 시작 */
-
-
 
 	if(isset($_GET['searchColumn'])) {
 
@@ -42,7 +38,7 @@ if(isset($_GET['page'])) {
 
 	if(isset($searchColumn) && isset($searchText)) {
 
-		$searchSql = ' where ' . $searchColumn . ' like "%' . $searchText . '%"';
+		$searchSql = ' WHERE ' . $searchColumn . ' like "%' . $searchText . '%"';
 
 	} else {
 
@@ -50,13 +46,10 @@ if(isset($_GET['page'])) {
 
 	}
 
-
-
 	/* 검색 끝 */
 
 
-
-$sql = 'select count(*) as cnt from qna' . $searchSql;
+$sql = 'SELECT count(*) as cnt from qna' . $searchSql;
 $result = $db->query($sql);
 
 $row = $result->fetch_assoc();
@@ -70,77 +63,76 @@ if(empty($allPost)) {
 
 	} else {
 
+		$onePage = 15; // 한 페이지에 보여줄 게시글의 수.
 
-$onePage = 10; // 한 페이지에 보여줄 게시글의 수.
-
-$allPage = ceil($allPost / $onePage); //전체 페이지의 수
-
-
-
-if($page < 1 || ($allPage && $page > $allPage)) {
-
-?>
-
-  <script>
-
-    alert("존재하지 않는 페이지입니다.");
-
-    history.back();
-
-  </script>
-
-<?php
-
-  exit;
-
-}
+			$allPage = ceil($allPost / $onePage); //전체 페이지의 수
 
 
 
-$oneSection = 10; //한번에 보여줄 총 페이지 개수(1 ~ 10, 11 ~ 20 ...)
+			if($page < 1 && $page > $allPage) {
 
-$currentSection = ceil($page / $oneSection); //현재 섹션
+	?>
 
-$allSection = ceil($allPage / $oneSection); //전체 섹션의 수
+				<script>
 
+					alert("존재하지 않는 페이지입니다.");
 
+					history.back();
 
-$firstPage = ($currentSection * $oneSection) - ($oneSection - 1); //현재 섹션의 처음 페이지
+				</script>
 
+	<?php
 
+				exit;
 
-if($currentSection == $allSection) {
-
-  $lastPage = $allPage; //현재 섹션이 마지막 섹션이라면 $allPage가 마지막 페이지가 된다.
-
-} else {
-
-  $lastPage = $currentSection * $oneSection; //현재 섹션의 마지막 페이지
-
-}
+			}
 
 
 
-$prevPage = (($currentSection - 1) * $oneSection); //이전 페이지, 11~20일 때 이전을 누르면 10 페이지로 이동.
+			$oneSection = 10; //한번에 보여줄 총 페이지 개수(1 ~ 10, 11 ~ 20 ...)
 
-$nextPage = (($currentSection + 1) * $oneSection) - ($oneSection - 1); //다음 페이지, 11~20일 때 다음을 누르면 21 페이지로 이동.
+			$currentSection = ceil($page / $oneSection); //현재 섹션
 
-
-
-$paging = '<ul>'; // 페이징을 저장할 변수
+			$allSection = ceil($allPage / $oneSection); //전체 섹션의 수
 
 
 
-//첫 페이지가 아니라면 처음 버튼을 생성
+			$firstPage = ($currentSection * $oneSection) - ($oneSection - 1); //현재 섹션의 처음 페이지
 
-if($page != 1) {
-$paging .= '<li class="page page_start"><a href="./qna.php?page=1' . $subString . '">처음</a></li>';
+
+
+			if($currentSection == $allSection) {
+
+				$lastPage = $allPage; //현재 섹션이 마지막 섹션이라면 $allPage가 마지막 페이지가 된다.
+
+			} else {
+
+				$lastPage = $currentSection * $oneSection; //현재 섹션의 마지막 페이지
+
+			}
+
+
+
+			$prevPage = (($currentSection - 1) * $oneSection); //이전 페이지, 11~20일 때 이전을 누르면 10 페이지로 이동.
+
+			$nextPage = (($currentSection + 1) * $oneSection) - ($oneSection - 1); //다음 페이지, 11~20일 때 다음을 누르면 21 페이지로 이동.
+
+
+
+			$paging = '<ul>'; // 페이징을 저장할 변수
+
+
+
+			//첫 페이지가 아니라면 처음 버튼을 생성
+
+			if($page != 1) {
+				$paging .= '<li class="page page_start"><a href="./index.php?page=1' . $subString . '">처음</a></li>';
 }
 
 //첫 섹션이 아니라면 이전 버튼을 생성
 
 if($currentSection != 1) {
-$paging .= '<li class="page page_prev"><a href="./qna.php?page=' . $prevPage . $subString . '">이전</a></li>';
+$paging .= '<li class="page page_prev"><a href="./index.php?page=' . $prevPage . $subString . '">이전</a></li>';
 }
 
 
@@ -153,7 +145,7 @@ for($i = $firstPage; $i <= $lastPage; $i++) {
 
   } else {
 
-$paging .= '<li class="page"><a href="./qna.php?page=' . $i . $subString . '">' . $i . '</a></li>';
+$paging .= '<li class="page"><a href="./index.php?page=' . $i . $subString . '">' . $i . '</a></li>';
   }
 
 }
@@ -163,7 +155,7 @@ $paging .= '<li class="page"><a href="./qna.php?page=' . $i . $subString . '">' 
 //마지막 섹션이 아니라면 다음 버튼을 생성
 
 if($currentSection != $allSection) {
-$paging .= '<li class="page page_next"><a href="./qna.php?page=' . $nextPage . $subString . '">다음</a></li>';
+$paging .= '<li class="page page_next"><a href="./index.php?page=' . $nextPage . $subString . '">다음</a></li>';
 }
 
 
@@ -172,7 +164,7 @@ $paging .= '<li class="page page_next"><a href="./qna.php?page=' . $nextPage . $
 
 if($page != $allPage) {
 
-	$paging .= '<li class="page page_end"><a href="./qna.php?page=' . $allPage . $subString . '">끝</a></li>';
+	$paging .= '<li class="page page_end"><a href="./index.php?page=' . $allPage . $subString . '">끝</a></li>';
 }
 
 $paging .= '</ul>';
@@ -322,26 +314,27 @@ $result = $db->query($sql);
              				<?php echo $paging ?>
 
              			</div>
-                   <div class="searchBox">
+									<div class="searchBox">
 
-           				<form action="./index.php" method="get">
-                     <?php $searchColumn = ''; ?>
-           					<select name="searchColumn">
+			 <form action="./index.php" method="get">
 
-           						<option <?php echo $searchColumn=='b_title'?'selected="selected"':null?> value="b_title">제목</option>
+				 <select name="searchColumn">
 
-           						<option <?php echo $searchColumn=='b_content'?'selected="selected"':null?> value="b_content">내용</option>
+					 <option <?php echo $searchColumn=='title'?'selected="selected"':null?> value="title">제목</option>
 
-           						<option <?php echo $searchColumn=='b_id'?'selected="selected"':null?> value="b_id">작성자</option>
+					 <option <?php echo $searchColumn=='discription'?'selected="selected"':null?> value="description">내용</option>
 
-           					</select>
+					 <option <?php echo $searchColumn=='author'?'selected="selected"':null?> value="author">작성자</option>
 
-           					<input type="text" name="searchText" value="<?php echo isset($searchText)?$searchText:null?>">
+				 </select>
 
-           					<button type="submit">검색</button>
+				 <input type="text" name="searchText" value="<?php echo isset($searchText)?$searchText:null?>">
 
-           				</form>
+				 <button type="submit">검색</button>
 
+			 </form>
+
+		 </div>
            			</div>
          	</article>
 
@@ -350,7 +343,7 @@ $result = $db->query($sql);
 
        </main>
     </section>
-  </div>
+
   <div >
       <?php require('../../../include/bottom.php'); ?>
   </div>

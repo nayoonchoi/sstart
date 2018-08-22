@@ -28,6 +28,7 @@
 
 
 
+
 	if(isset($bNo)) {
 
 		$sql = 'select title, description, author from message  where id = ' . $bNo;
@@ -121,28 +122,38 @@
 
                         <tr>
 
-                          <th scope="row"><label for="bID">아이디</label></th>
+                          <th scope="row"><label for="bID">보내는 이</label></th>
 
-                          <td class="id"><?php
+                          <td class="id">
 
-								if(isset($bNo)) {
 
-									echo $row['author'];
+													<?php echo $_SESSION['member_username'];?>
+												</tr>
 
-								} else { ?>
+                        <tr>
 
-									<input type="text" name="bID" id="bID">
+                          <th scope="row"><label for="bSnedto">받는이</label></th>
+
+                          <td class="bSendto">
+
+
+
+							<?php
+							if(isset($_POST['bSendto'])) {
+								echo $_POST['bSendto'];
+								?>
+
+
+									<input type="hidden" name="bSendto" value="<?php 	echo $_POST['bSendto']?>">
+									<?php
+								} else {?>
+
+									<input type="text" name="bSendto" id="bSendto">
 
 								<?php } ?>
 
                         </tr>
-                        <tr>
 
-                          <th scope="row"><label for="bPassword">비밀번호</label></th>
-
-                          <td class="password"><input type="text" name="bPassword" id="bPassword"></td>
-
-                        </tr>
 
                         <tr>
 

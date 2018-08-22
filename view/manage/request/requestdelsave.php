@@ -1,12 +1,16 @@
 <?php
 
-	require_once("./messagedb.php");
+	require_once("./requestdb.php");
 
 
 
 	//$_POST['bno']이 있을 때만 $bno 선언
-	$bNo = $_POST['bno'];
 
+	if(isset($_POST['bno'])) {
+
+		$bNo = $_POST['bno'];
+
+	}
 
 
 
@@ -20,7 +24,7 @@ if(isset($bNo)) {
 
 	//삭제 할 글의 비밀번호가 입력된 비밀번호와 맞는지 체크
 
-	$sql = 'select count(password) as cnt from message where id = ' . $bNo;
+	$sql = 'select count(password) as cnt from request where password="' . $bPassword . '" and id = ' . $bNo;
 
 	$result = $db->query($sql);
 
@@ -32,7 +36,7 @@ if(isset($bNo)) {
 
 	if($row['cnt']) {
 
-		$sql = 'DELETE FROM message WHERE id = ' . $bNo;
+		$sql = 'DELETE FROM request WHERE id = ' . $bNo;
 
 	//틀리다면 메시지 출력 후 이전화면으로
 
