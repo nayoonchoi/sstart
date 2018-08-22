@@ -17,7 +17,7 @@ if(mysqli_connect_errno())
  $name=trim($_POST['name']);
  $nickname=trim($_POST['nickname']);
  $phone=trim($_POST['phone']);
- $stid=trim($_POST['stid']);
+ $stid=strtoupper(trim($_POST['stid']));
  $gendertype=$_POST['gendertype'];
  $email=trim($_POST['email']);
 //결과 확인용 출력
@@ -40,7 +40,7 @@ $path2="..\account\memberimg\\".$stid."\\img";
 mkdir($path2);
 //받은 이미지 파일 처리
 $member_image1=$_FILES['image']['name'];//이미지 이름
-$member_image=preg_replace("/\s+/","",$_member_image1);
+$member_image=preg_replace("/\s+/","",$member_image1);
 //$target=$path.$member_image;//이미지를 저장할 경로
 $target="..\account\memberimg\\".$stid."\\".$member_image;
 $tmp_name=$_FILES['image']['tmp_name'];//이미지가 임시로 저장되는 경로
@@ -82,8 +82,11 @@ switch($gendertype)
     echo '<p> 유효한 searchtype이 아닙니다.</br>';
   exit;
 }
+//데이터 모두 입력 했는지 검사
 //홍익대학교 학생의 학번 형식 검사
-if(substr(trim($_POST['stid']), 0, 1) != 'a' && substr(trim($_POST['stid']), 0, 1) != 'b')
+if(substr(trim($_POST['stid']), 0, 1) != 'a' && substr(trim($_POST['stid']), 0, 1) != 'b' &&
+substr(trim($_POST['stid']), 0, 1) != 'A' && substr(trim($_POST['stid']), 0, 1) != 'B' &&
+substr(trim($_POST['stid']), 0, 1) != 'c' && substr(trim($_POST['stid']), 0, 1) != 'C')
 {
   header("Content-Type: text/html; charset=UTF-8");
   echo "<script>alert('홍익대학교 학생의 학번 형식이 다릅니다.');";
@@ -104,8 +107,6 @@ if(!(strlen(trim($_POST['stid'])) == 7 || strlen(trim($_POST['stid'])) == 8))
   echo "window.location.replace('register.php');</script>";
   exit;
 }
-//데이터 모두 입력 했는지 검사
-
 if(!$username||!$password||!$name||!$nickname||!$phone||!$stid||!$gendertype||!$email)
 {
   header("Content-Type: text/html; charset=UTF-8");

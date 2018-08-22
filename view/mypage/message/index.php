@@ -6,6 +6,7 @@ if(!isset($_SESSION))
 	require_once("./messagedb.php");
  $subString = '';
  $searchColumn = '';
+
   /* 페이징 시작 */
 
 //페이지 get 변수가 있다면 받아오고, 없다면 1페이지를 보여준다.
@@ -68,9 +69,11 @@ $row = $result->fetch_assoc();
 
 
 $allPost = $row['cnt']; //전체 게시글의 수
+$b1 = $row['cnt'];
 if(empty($allPost)) {
 
 		$emptyData = '<tr><td class="textCenter" colspan="5">글이 존재하지 않습니다.</td></tr>';
+    $paging = '<li class="page"><a href="./index.php?page=1' . $subString . '"> 1 </a></li>';
 
 	} else {
 
@@ -153,8 +156,8 @@ for($i = $firstPage; $i <= $lastPage; $i++) {
 
   if($i == $page) {
 
-    $paging .= '<li class="page current"></li>';
 
+        $paging .= '<li class="page current"><a href="./index.php?page=' . $i . $subString . '">' . $i . '</a></li>';
   } else {
 
 $paging .= '<li class="page"><a href="./message.php?page=' . $i . $subString . '">' . $i . '</a></li>';
@@ -221,7 +224,7 @@ $result = $db->query($sql);
 
     <section class="content" >
 			<div  id="banner-left">
-					<?php require('../banner-left.php');?>
+					<?php require('./banner-left.php');?>
 			</div>
 			 <main>
          	<meta charset="utf-8" />
@@ -301,7 +304,8 @@ $result = $db->query($sql);
          */				?>
 
          				<tr>
-         					<td class="no"><?php echo $row['id']?></td>
+         					<td class="no"><?php echo $b1?></td>
+                  <?php $b1=$b1-1?>
          					<td class="title"><?php echo $row['title']?></a></td>
          					<td class="author"><?php echo $row['author']?></td>
          					<td class="date"><?php echo $row['created']?></td>
@@ -347,11 +351,9 @@ $result = $db->query($sql);
                      <?php $searchColumn = ''; ?>
            					<select name="searchColumn">
 
-           						<option <?php echo $searchColumn=='b_title'?'selected="selected"':null?> value="b_title">제목</option>
+           						<option <?php echo $searchColumn=='title'?'selected="selected"':null?> value="title">내용</option>
 
-           						<option <?php echo $searchColumn=='b_content'?'selected="selected"':null?> value="b_content">내용</option>
-
-           						<option <?php echo $searchColumn=='b_id'?'selected="selected"':null?> value="b_id">작성자</option>
+           						<option <?php echo $searchColumn=='author'?'selected="selected"':null?> value="author">보낸이</option>
 
            					</select>
 

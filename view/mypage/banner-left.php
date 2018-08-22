@@ -39,10 +39,10 @@
 			        <a class="nav-link" href="/HI_ART/view/mypage/get_authority.php"style="color:#282f3a;">권한 얻기</a>
 		         </li>
                  <?php } ?>
-                     <li class="nav-item">
-                      <a class="nav-link" href="/HI_ART/view/mypage/leave.php"style="color:#282f3a;">회원탈퇴</a>
-                       </li>
 				  <li class="nav-item">
 					   <a class="nav-link" href="/HI_ART/view/mypage/message/index.php"style="color:#282f3a;">쪽지 확인</a>
 				    </li>
+				    <li class="nav-item">
+                      <a class="nav-link" href="/HI_ART/view/mypage/leave.php"style="color:#282f3a;">회원탈퇴</a>
+                       </li>
 		        </ul>

@@ -30,9 +30,10 @@
 .boardArticle .paging li {display: inline-block; height: 20px; margin: 0 5px; padding: 0 5px; border: 1px solid #666; background: #eee; line-height: 21px;}
 
 .boardArticle .paging li.current,
-.boardArticle .paging li:hover {background: #666;}
-.boardArticle .paging li.current,
 .boardArticle .paging li:hover a { color: #ddd;}
+
+.boardArticle .paging li.current,
+.boardArticle .paging li:hover {background: #999; }
 
 .boardArticle .searchBox{text-align: center;}
 

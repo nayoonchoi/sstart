@@ -64,9 +64,11 @@ $row = $result->fetch_assoc();
 
 
 $allPost = $row['cnt']; //전체 게시글의 수
+$b1 = $row['cnt'];
 if(empty($allPost)) {
 
 		$emptyData = '<tr><td class="textCenter" colspan="5">글이 존재하지 않습니다.</td></tr>';
+		$paging = '<li class="page"><a href="./index.php?page=1' . $subString . '"> 1 </a></li>';
 
 	} else {
 
@@ -149,7 +151,7 @@ for($i = $firstPage; $i <= $lastPage; $i++) {
 
   if($i == $page) {
 
-    $paging .= '<li class="page current"></li>';
+    $paging .= '<li class="page current"><a href="./index.php?page=' . $i . $subString . '">' . $i . '</a></li>';
 
   } else {
 
@@ -296,7 +298,8 @@ $result = $db->query($sql);
          */				?>
 
          				<tr>
-         					<td class="no"><?php echo $row['id']?></td>
+									<td class="no"><?php echo $b1?></td>
+									<?php $b1=$b1-1?>
          					<td class="title"><a href="./requestview.php?bno=<?php echo $row['id']?>"><?php echo $row['title']?></a></td>
          					<td class="author"><?php echo $row['author']?></td>
          					<td class="date"><?php echo $row['created']?></td>

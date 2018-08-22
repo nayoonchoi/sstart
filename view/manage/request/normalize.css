@@ -95,7 +95,9 @@ a {
  */
 
 a:active,
-a:hover {
+a:hover {color:#fff;
+    border:1px solid #f40;
+    background-color:#f40; 
   outline: 0;
 }
 

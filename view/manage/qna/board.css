@@ -9,11 +9,11 @@
 .boardArticle .date {width:100px;text-align:center}
 .boardArticle .hit {width:40px;text-align:center}
 */
-.boardArticle {width: 800px;}
+.boardArticle {width: 720px;}
 
 /* 글목록 */
 
-.boardArticle table {width: 800px;}
+.boardArticle table {width: 720px;}
 
 .boardArticle th {padding: 5px 0; border-top: 2px solid #666; border-bottom: 1px solid #666;}
 .boardArticle tr: hover {background: #eee;}
@@ -57,20 +57,20 @@
 .boardView .btnSet {text-align: right;}
 .boradview {width: 800px;}
 
-   /* 댓글 쓰기*/
-   #boardComment table {width: 100%;}
-   #boardComment table th {width: 100px; padding: 0 5px; text-align: right; vertical-align: middle;}
-   #boardComment table td {padding: 5px; text-align: left;}
+	/* 댓글 쓰기*/
+	#boardComment table {width: 100%;}
+	#boardComment table th {width: 100px; padding: 0 5px; text-align: right; vertical-align: middle;}
+	#boardComment table td {padding: 5px; text-align: left;}
 
-   #boardComment #coContent {width: 99%; height: 120px;}
+	#boardComment #coContent {width: 99%; height: 120px;}
 
-   #commentView ul {list-style: none; margin: 0; padding:0;}
-   #commentView .oneDepth {margin: 10px 0; padding: 10px; background: #eee;}
-   #commentView .twoDepth {margin: 20px; padding: 10px; background: #fff;}
-   #commentView .commentInfo {overflow: hidden;}
-   #commentView .commentId {float: left;}
-   #commentView .commentBtn {float: right;}
-   #commentView .commentContent {clear: both;}
+	#commentView ul {list-style: none; margin: 0; padding:0;}
+	#commentView .oneDepth {margin: 10px 0; padding: 10px; background: #eee;}
+	#commentView .twoDepth {margin: 20px; padding: 10px; background: #fff;}
+	#commentView .commentInfo {overflow: hidden;}
+	#commentView .commentId {float: left;}
+	#commentView .commentBtn {float: right;}
+	#commentView .commentContent {clear: both;}
 
 
 /* 글삭제 */

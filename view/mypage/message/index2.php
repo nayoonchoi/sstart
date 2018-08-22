@@ -68,9 +68,11 @@ $row = $result->fetch_assoc();
 
 
 $allPost = $row['cnt']; //전체 게시글의 수
+$b1 = $row['cnt'];
 if(empty($allPost)) {
 
 		$emptyData = '<tr><td class="textCenter" colspan="5">글이 존재하지 않습니다.</td></tr>';
+    $paging = '<li class="page"><a href="./index2.php?page=1' . $subString . '"> 1 </a></li>';
 
 	} else {
 
@@ -153,8 +155,8 @@ for($i = $firstPage; $i <= $lastPage; $i++) {
 
   if($i == $page) {
 
-    $paging .= '<li class="page current"></li>';
 
+        $paging .= '<li class="page current"><a href="./index.php?page=' . $i . $subString . '">' . $i . '</a></li>';
   } else {
 
 $paging .= '<li class="page"><a href="./message.php?page=' . $i . $subString . '">' . $i . '</a></li>';
@@ -300,8 +302,9 @@ $result = $db->query($sql);
          */				?>
 
          				<tr>
-         					<td class="no"><?php echo $row['id']?></td>
-         					<td class="title"><?php echo $row['title']?></a></td>
+                  <td class="no"><?php echo $b1?></td>
+                  <?php $b1=$b1-1?>
+                <td class="title"><?php echo $row['title']?></a></td>
          					<td class="author"><?php echo $row['sendto']?></td>
          					<td class="date"><?php echo $row['created']?></td>
   							 <td class="del">
@@ -338,9 +341,7 @@ $result = $db->query($sql);
                      <?php $searchColumn = ''; ?>
            					<select name="searchColumn">
 
-           						<option <?php echo $searchColumn=='title'?'selected="selected"':null?> value="title">제목</option>
-
-           						<option <?php echo $searchColumn=='description'?'selected="selected"':null?> value="description">내용</option>
+           						<option <?php echo $searchColumn=='title'?'selected="selected"':null?> value="title">내용</option>
 
            						<option <?php echo $searchColumn=='sendto'?'selected="selected"':null?> value="sendto">받는이</option>
 

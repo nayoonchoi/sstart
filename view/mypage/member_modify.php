@@ -69,7 +69,7 @@
 
 <div>
   <label for="id_password1">비밀번호:</label>
-  <input class="form-control" type="password" name="password1"  id="id_password1"  value="<?php echo $row['member_pw'];?>"/>
+  <input class="form-control" type="password" name="password1"  id="id_password1"/>
 </div>
 
 
@@ -79,7 +79,7 @@
   <p>비밀번호는 전부 숫자로 할 수 없습니다.</p></br >
 <div>
   <label for="id_password2">비밀번호 확인:</label>
-  <input  class="form-control"type="password" name="password2"  id="id_password2"  value="<?php echo $row['member_pw'];?>"/>
+  <input  class="form-control"type="password" name="password2"  id="id_password2"/>
 </div>
 <p>확인을 위해 이전과 동일한 비밀번호를 입력하세요.</p>
 
