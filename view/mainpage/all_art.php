@@ -29,14 +29,14 @@
 
                                 <div class="box">
                                    <ul class="nav nav-pills flex-column" style="font-weight:bolder; height:35px;">
-                                    <li class="nav-item" style="display:flex; align-items: center;">
-                                      <a class="nav-link " href="#"style="color:#282f3a;">등록된 작품</a>
+                              			<li class="nav-item" style="display:flex; align-items: center;">
+                              				<a class="nav-link " href="#"style="color:#282f3a;">등록된 작품</a>
                                     <li>
                                     <ul>
                                 </div>
 
                   <div >
-                    <?php require('./get_cart_db.php');?>
+                    <?php require('./all_artwork_db.php');?>
 
 
 

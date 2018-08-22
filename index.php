@@ -23,8 +23,8 @@
 
   <section class="content" >
     <div  id="banner-left">
-		 <?php require('./include/main_banner_left.php'); ?>
-		</div>
+       <?php require('./include/main_banner_left.php'); ?>
+      </div>
     <main>
       <div class="flexbox-row">
       <main-img>
@@ -35,22 +35,22 @@
           <li data-target="#demo" data-slide-to="2"></li>
         </ul>
         <div class="carousel-inner">
-          <div class="carousel-item active" style="width:600px; height:400px;">
-            <img src="./image/20160101_153946.jpg" alt="" width="600px" height="400px">
+          <div class="carousel-item active" style="width:660px; height:400px;">
+            <img src="./image/20160101_153946.jpg" alt="" width="650px" height="400px">
             <div class="carousel-caption">
               <h3></h3>
               <p></p>
             </div>
           </div>
-          <div class="carousel-item" style="width:600px; height:400px; ">
-            <img src="./image/badam_07.jpg" alt="Chicago" width="600px" height="400px">
+          <div class="carousel-item" style="width:660px; height:400px; ">
+            <img src="./image/badam_07.jpg" alt="Chicago" width="650px" height="400px">
             <div class="carousel-caption">
               <h3></h3>
               <p></p>
             </div>
           </div>
-          <div class="carousel-item"style="width:600px; height:400px;">
-            <img src="./image/PabloFuentesGomez_EX-_01.jpg?raw=true" alt="New York" width="600px" height="400px">
+          <div class="carousel-item"style="width:660px; height:400px;">
+            <img src="./image/PabloFuentesGomez_EX-_01.jpg?raw=true" alt="New York" width="650px" height="400px">
             <div class="carousel-caption">
               <h3></h3>
               <p></p>
@@ -81,8 +81,8 @@
 
     <div class="box">
       <ul class="nav nav-pills flex-column" style="font-weight:bolder; height:35px;">
-   			<li class="nav-item" style="display:flex; align-items: center;">
-   				<a class="nav-link " href="#"style="color:#282f3a;">새로 등록된 작품</a>
+            <li class="nav-item" style="display:flex; align-items: center;">
+               <a class="nav-link "  href="./view/mainpage/all_art.php" style="color:#282f3a;">새로 등록된 작품</a>
         </li>
       </ul>
     </div>
@@ -129,8 +129,8 @@
 
     <div class="box">
       <ul class="nav nav-pills flex-column" style="font-weight:bolder; height:35px;">
-   			<li class="nav-item" style="display:flex; align-items: center;">
-   				<a class="nav-link " href="#"style="color:#282f3a;">사람들이 많이 본 작품</a>
+            <li class="nav-item" style="display:flex; align-items: center;">
+               <a class="nav-link " href="#"style="color:#282f3a;">사람들이 많이 본 작품</a>
         </li>
       </ul>
     </div>

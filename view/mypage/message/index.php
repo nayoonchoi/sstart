@@ -221,7 +221,7 @@ $result = $db->query($sql);
 
     <section class="content" >
 			<div  id="banner-left">
-					<?php require('./banner-left.php');?>
+					<?php require('../banner-left.php');?>
 			</div>
 			 <main>
          	<meta charset="utf-8" />

@@ -20,7 +20,7 @@
   <div class="container">
     <section class="content" >
       <div  id="banner-left">
-	      <?php require('./banner-left.php');?>
+         <?php require('./banner-left.php');?>
       </div>
      <main>
 
@@ -51,8 +51,9 @@
 </div>
 
 <div>
-  <label for="id_price">희망 가격:</label>
+  <label for="id_price">희망 가격(원):</label>
   <input class="form-control" type="text" name="price" required id="id_price" />
+  <p style="color:red">숫자만 입력 가능합니다.</p>
 </div>
 <p></br> 작품 종류: </p>
 
@@ -110,7 +111,7 @@
 </div>
 <div>
   <label for="id_exhibit">작품을 전시했던 전시회(있다면):</label>
-  <input  class="form-control"type="text" name="exhibition" required id="id_exhibit" />
+  <input  class="form-control"type="text" name="exhibition" id="id_exhibit"  />
 </div>
 <div class="form-group">
   <label for="id_comment">작품설명:</label>

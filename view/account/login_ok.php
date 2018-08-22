@@ -61,13 +61,19 @@
         }
         else//패스워드 일치 하지 않음
         {
-          echo "wrong id or pw";
+          header("Content-Type: text/html; charset=UTF-8");
+      echo "<script>alert('아이디 또는 비밀번호를 다시 확인해주세요.');";
+      echo "window.location.replace('login.php');</script>";
+      exit;
         }
       }
   }
   else//일치하는 행이 없음
   {
-    echo "wrong id or pw";
+    header("Content-Type: text/html; charset=UTF-8");
+      echo "<script>alert('아이디 또는 비밀번호를 다시 확인해주세요.');";
+      echo "window.location.replace('login.php');</script>";
+      exit;
   }
 
 ?>
