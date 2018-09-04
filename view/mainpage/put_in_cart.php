@@ -31,10 +31,10 @@ $sql = $sql. "values('$title','$like_id')";
 if(mysqli_query($conn,$sql))
 {
   echo "<script>alert('장바구니등록 완료.');";
-  echo "window.location.replace('all_art.php');</script>";
+  echo "window.location.replace('../mypage/cart.php');</script>";
 }else{
   echo "<script>alert('장바구니등록 실패.');";
-  echo "window.location.replace('all_art.php');</script>";;
+  echo "window.location.replace('../mypage/cart.php');</script>";;
 }
 
 mysqli_close($conn);

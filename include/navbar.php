@@ -50,7 +50,17 @@
             </li>
           <?php } ?>
         </ul>
+        <?php if(!isset($_SESSION['member_username']) || !isset($_SESSION['member_name'])) { ?>
         <div id="box" >
+          <div class="search-container" style="padding:3px; height:44px">
+            <form class="form-inline" action="/HI_ART/view/manage/denial_access.php"style="margin-left:100px;display:block;" method="get">
+              <input class="form-control mr-sm-2" name="search_word"type="text" placeholder="Search">
+              <button class="btn btn-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+         <?php } else { ?>
+         <div id="box" >
           <div class="search-container" style="padding:3px; height:44px">
             <form class="form-inline" action="/HI_ART/include/search_db.php"style="margin-left:100px;display:block;" method="get">
               <input class="form-control mr-sm-2" name="search_word"type="text" placeholder="Search">
@@ -58,5 +68,6 @@
             </form>
           </div>
         </div>
+        <?php } ?>
       </div>
     </div>

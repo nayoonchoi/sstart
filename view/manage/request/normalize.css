@@ -95,10 +95,10 @@ a {
  */
 
 a:active,
-a:hover {color:#fff;
-    border:1px solid #f40;
-    background-color:#f40; 
-  outline: 0;
+a:hover {
+
+
+
 }
 
 /* Text-level semantics

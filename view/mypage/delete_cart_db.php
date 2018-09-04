@@ -23,10 +23,10 @@ $sql = "DELETE FROM cart where artwork_title= '{$artwork_title}'";
 
 if(mysqli_query($conn,$sql))
 {
-  echo "<script>alert('작품삭제 완료.');";
+  echo "<script>alert('장바구니에서 해당 작품 삭제 완료.');";
   echo "window.location.replace('cart.php');</script>";
 }else{
-  echo "<script>alert('작품삭제 실패.');";
+  echo "<script>alert('장바구니에서 해당 작품 삭제 실패.');";
   echo "window.location.replace('cart.php');</script>";;
 }
 

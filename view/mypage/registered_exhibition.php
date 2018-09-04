@@ -44,18 +44,65 @@
                     {
                       echo "Failed to connect to mysql:". mysqli_connect_errno();
                     }
+                        $sql = "SELECT * FROM exhibition where exhibit_adminid = '{$_SESSION['member_username']}'";
+                    $result=mysqli_query($conn,$sql);
+                    $num= mysqli_num_rows($result);//상품 총 갯수
 
-                    //전시정보 테이블에서 가져오는 쿼리문 작성
-                    $sql = "SELECT * FROM exhibition where exhibit_adminid = '{$_SESSION['member_username']}'";
+
+                    if(isset($_GET['page']))
+                    {
+                      $page = ($_GET['page']);
+                    }
+                    else {
+                      $page=1;
+                    }
+
+                    $list = 5;
+
+                    $block = ceil($page/5);
+                    $total_page = ceil($num/$list); // 총 페이지
+                    $blockNum = ceil($total_page/$block); // 총 블록
+                    $nowBlock = ceil($page/$block);
+
+                    //$s_page = ($nowBlock * $block) - 2;
+                    $s_page=( ($block - 1) *5) + 1;
+                    if ($s_page <= 1) {
+                        $s_page = 1;
+                    }
+                    $e_page = $s_page+5-1;
+                    if ($total_page <= $e_page) {
+                        $e_page = $total_page;
+                    }
+
+
+                    //$row1 = mysqli_fetch_assoc($result);
+                    /*
+                    echo "현재 페이지는".$page."<br/>";
+                    echo "현재 블록은".$nowBlock."<br/>";
+
+                    echo "현재 블록의 시작 페이지는".$s_page."<br/>";
+                    echo "현재 블록의 끝 페이지는".$e_page."<br/>";
+
+                    echo "총 페이지는".$total_page."<br/>";
+                    echo "총 블록은".$blockNum."<br/>";
+                    */
+
+                    $s_point = ($page-1) * $list;
+
+
+
 
                     //쿼리실행
+                    //$result=mysqli_query($conn,$sql);
+                    //전시정보 테이블에서 가져오는 쿼리문 작성
+                    $sql = "SELECT * FROM exhibition where exhibit_adminid = '{$_SESSION['member_username']}'  LIMIT $s_point,$list";
                     $result=mysqli_query($conn,$sql);
 
 
-                    if(mysqli_num_rows($result) >0)
-                    {
-                        while($row2 = mysqli_fetch_assoc($result))
-                        {
+                for ($i=1; $i<=mysqli_num_rows($result);$i++) {
+
+                        $row2 = mysqli_fetch_assoc($result);
+
 
 
                           $image_dir="..\..\show_img\\";
@@ -111,11 +158,12 @@
                     echo "</div>";
                       echo "</div>";
 
-                          }
 
-                    }
-                    else{
+
+
+                    if ($row2== false) {
                       echo "<p>등록된 전시회가 없습니다.</p>";  echo "<br/>\n";
+                    }
                     }
                     mysqli_close($conn);
                     ?>
@@ -128,14 +176,15 @@
               </section>
               <div id="page">
               <div class="pagination">
-                <a href="#">&laquo;</a>
-                <a href="#">1</a>
-                <a class="active" href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#">6</a>
-                <a href="#">&raquo;</a>
+                <?php
+                                for ($p=$s_page; $p<=$e_page; $p++) {
+                                ?>
+
+                                    <a href="<?="http://localhost/HI_ART/view/mypage/registered_exhibition.php"?>?page=<?=$p?>"><?=$p?></a>
+
+                                <?php
+                                }
+                                ?>
               </div>
             </div>
             </main>

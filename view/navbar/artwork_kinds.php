@@ -39,9 +39,9 @@
                                   <a href='<?="http://localhost/HI_ART/view/navbar/artwork_kinds.php"?>?kind=<?php echo $_GET['kind']; $ordertype='desc';?>&ordertype=<?='desc' ?>'>[높은 가격순]</a>
 
                                 </div>
+                                <contentbox>
 
 
-                  <div >
                     <?php
                     if(!isset($_SESSION))
                     {
@@ -75,7 +75,7 @@
                     }
 
 
-                    $list = 5;
+                    $list = 8;
 
                     $block = ceil($page/5);
                     $total_page = ceil($num/$list); // 총 페이지
@@ -122,58 +122,25 @@
 
                                   $image_dir="..\account\memberimg\\".$row2['member_stid']."\\img\\";
                                   $image_path=$image_dir.$row2['artwork_image'];
-                                  echo "<div class=\"product-row\" >";
+                                    echo "<div class=\"product3\"><a href=../../artwork_detail.php?id=";
+                                    echo $row2['artwork_id'];
+                                    echo '>';
                                   echo '<img src=';
                                   echo $image_path;
                                   echo ' , alt="이미지를 등록해 주세요" ';
-                                  echo 'style= "width:250px; height:250px;">';
-                                  echo "<div class=\"product\">";
+                                  echo '></a>';
+
                                   echo "<div class=\"product-box\">";
-                                  echo "<div class=\"product-description\">";
-                                  echo "<description1>";
-                                  echo "작품 제목: ".htmlspecialchars($row2['artwork_title']);  echo "<br/>\n";
-                                  echo "작품 종류: ".htmlspecialchars($row2['artwork_kinds']);  echo "<br/>\n";
-                                  echo "작품 재질: ".htmlspecialchars($row2['artwork_materials']);  echo "<br/>\n";
-                                  echo "작품 크기: ".htmlspecialchars($row2['artwork_size']);  echo "<br/>\n";
-                                  echo "작품 가격: ".htmlspecialchars($row2['artwork_price']);  echo "<br/>\n";
-                                  echo "만든 날짜: ".htmlspecialchars($row2['artwork_workdate']);  echo "<br/>\n";
-                                  echo "등록 시기: ".htmlspecialchars($row2['artwork_regTime']);  echo "<br/>\n";
 
-                                  echo "판매 여부: ";
-                                  if($row2['artwork_issold']==0){
-                                    echo "안팔림";  echo "<br/>\n";
-                                  }else {
-                                    echo "팔림";  echo "<br/>\n";
-                                  }
-                                  echo "</description1>";
-                                  echo "<description2>";
-                                  echo "작품 설명:";
-                                  echo "<br/>\n";
-                                  echo htmlspecialchars($row2['artwork_description']);
-                                  echo "</description2>";
-
-                                  echo "</div>";//product-description 끝
+                                  echo "<div class =\"des\">";
+                                  echo htmlspecialchars($row2['artwork_title']);  echo "<br/>\n";
+                                  echo "₩".htmlspecialchars($row2['artwork_price']);  echo "<br/>\n";
+                                 echo "</div>";
+                                 echo "</div>";
                                   echo "</div>";//product-box 끝
 
-                                  echo "<div class=\"buttonlayout-row\" >";
-                                    //echo '<div id="button"><a href="./alter_artwork.php" class="btn btn-info " role="button" >장바구니에 담기</a></div>';
-                                    echo '<form method="post" action="alter_artwork.php">';
-                                    echo '<input type="hidden" name="want_alter"';
-                                    echo ' value="';
-                                    echo $row2['artwork_id'];
-                                    echo '">';
-                                    echo '<div id="button"><button type="submit" class="btn btn-info ">장바구니에 담기</button></div>';
-                                    echo '</form>';
-                                    echo '<form method="post" action="want_further.php">';
-                                    echo '<input type="hidden" name="want_further"';
-                                    echo ' value="';
-                                    echo $row2['artwork_id'];
-                                    echo '">';
-                                   echo '<div id="button"><button type="submit" class="btn btn-info ">해당 판매자의 작품 더보기</button></div>';
-                                    echo '</form>';
-                                  echo "</div>";
-                                  echo "</div>";
-                                  echo "</div>";
+
+
 
 
                                 if ($row2== false) {
@@ -181,6 +148,7 @@
                                 }
                               }
                               ?>
+                            </contentbox>
                               <div id="page">
                               <div class="pagination">
                                 <?php

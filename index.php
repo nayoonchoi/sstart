@@ -70,7 +70,29 @@
           <li class="nav-item">
             <a class="nav-link " href="#"style="color:#282f3a;">이번주 전시정보</a>
             <div>
-              <img src="./image/exhibitionSt_58_434434_1266318280_i.jpg" alt="사진" width="300px" height="360px">
+                <?php
+                    if(!isset($_SESSION))
+                    {
+                      session_start();
+                    }
+                    $conn=mysqli_connect('localhost','root','123456','art_platform');//디비 접속
+                    if(mysqli_connect_errno())
+                    {
+                      echo "Failed to connect to mysql:". mysqli_connect_errno();
+                    }
+
+                    //전시정보 테이블에서 가져오는 쿼리문 작성
+                    $sql = "SELECT * FROM exhibition WHERE exhibit_sdate <= date(now()) AND exhibit_edate >= date(now()) LIMIT 1";
+                    $result=mysqli_query($conn,$sql);
+                    $row2 = mysqli_fetch_assoc($result);
+                    $image_dir=".\show_img\\";
+                    $image_path=$image_dir.$row2['exhibit_image'];
+
+                    echo '<img src=';
+                    echo $image_path;
+                    echo ' , alt="이미지를 불러올 수 없습니다" ';
+                    echo 'style= "width:320px; height:357px;">';
+                ?>
             </div>
           </li>
         </ul>
@@ -84,45 +106,42 @@
             <li class="nav-item" style="display:flex; align-items: center;">
                <a class="nav-link "  href="./view/mainpage/all_art.php" style="color:#282f3a;">새로 등록된 작품</a>
         </li>
+        <li>
+
+</li>
       </ul>
     </div>
-    <div class="content">
-      <div class="product">
-        <img style="display:block;" src="./image/1524458173.jpg" alt="작품사진" width="100%" height="200px">
-        <div class="box-row">
-          <h6 style="display:block;float:left;">라벤더 언덕</h6>
-          <p style="display:block; float:right;">by 이현열</p>
-        </div>
-      </div>
-      <div class="product">
-        <img style="display:block;" src="./image/1501837117.jpg" alt="작품사진" width="100%" height="200px">
-        <div class="box-row">
-          <h6 style="display:block; float:left;">걸어가는 지푸라기</h6>
-            <p style="display:block; float:right;">by 김한울</p>
-        </div>
-      </div>
-      <div class="product">
-        <img style="display:block;" src="./image/sata.jpg" alt="작품사진" width="100%" height="200px">
-        <div class="box-row">
-          <h6 style="display:block;float:left;">무제</h6>
-            <p style="display:block; float:right;">by 사타</p>
-        </div>
-      </div>
 
-      <div class="product">
-        <img style="display:block;" src="./image/GOODS3_1501810154.JPG" alt="작품사진" width="100%" height="200px">
-        <div class="box-row">
-          <h6 style="display:block;float:left;">꽃잔치</h6>
-            <p style="display:block; float:right;">by 이수동</p>
-        </div>
-      </div>
-      <div class="product">
-        <img style="display:block;" src="./image/1289839816.jpg" alt="작품사진" width="100%" height="200px">
-        <div class="box-row">
-          <h6 style="display:block;float:left;">결혼</h6>
-          <p style="display:block; float:right;">by 유현경</p>
-        </div>
-      </div>
+    <div class="wrap">
+    <div class="content">
+
+    <?php
+                  // 테이블에서 새로등록된 작품 가져오는 쿼리문 작성
+                    $sql = "SELECT * FROM artwork_with_stid ORDER BY artwork_id DESC LIMIT 6";
+                    $result=mysqli_query($conn,$sql);
+                    while($row2 = mysqli_fetch_assoc($result)){
+                    $image_dir=".\\view\account\memberimg\\".$row2['member_stid']."\\img\\";
+                    $image_path=$image_dir.$row2['artwork_image'];
+
+                    echo '<div class="product"><a href=./artwork_detail.php?id=';
+                    echo $row2['artwork_id'];
+                    echo '>';
+                    echo '<img src=';
+                    echo $image_path;
+                    echo ' , alt="이미지를 불러올 수 없습니다" ';
+                    echo 'style="height:250px;"></a>';
+                    echo '<div class="box-row">';
+                    echo '<h6 style="display:block;float:left;">';
+                    echo $row2['artwork_title'];
+                    echo '</h6>';
+                    echo '<p style="display:block; float:right;">₩ ';
+                    echo $row2['artwork_price'];
+                    echo '</p>';
+                    echo '</div>';
+                    echo '</div>';
+      }
+      ?>
+    </div>
     </div>
   </section>
   <section class="content-row">
@@ -134,43 +153,36 @@
         </li>
       </ul>
     </div>
+    <div class="wrap">
     <div class="content">
-      <div class="product">
-        <img style="display:block;" src="./image/1524458173.jpg" alt="작품사진" width="100%" height="200px">
-        <div class="box-row">
-          <h6 style="display:block;float:left;">라벤더 언덕</h6>
-          <p style="display:block; float:right;">by 이현열</p>
-        </div>
-      </div>
-      <div class="product">
-        <img style="display:block;" src="./image/1501837117.jpg" alt="작품사진" width="100%" height="200px">
-        <div class="box-row">
-          <h6 style="display:block; float:left;">걸어가는 지푸라기</h6>
-          <p style="display:block; float:right;">by 김한울</p>
-        </div>
-      </div>
-      <div class="product">
-        <img style="display:block;" src="./image/sata.jpg" alt="작품사진" width="100%" height="200px">
-        <div class="box-row">
-          <h6 style="display:block;float:left;">무제</h6>
-          <p style="display:block; float:right;">by 사타</p>
-        </div>
-      </div>
 
-      <div class="product">
-        <img style="display:block;" src="./image/GOODS3_1501810154.JPG" alt="작품사진" width="100%" height="200px">
-        <div class="box-row">
-          <h6 style="display:block;float:left;">꽃잔치</h6>
-          <p style="display:block; float:right;">by 이수동</p>
-        </div>
-      </div>
-      <div class="product">
-        <img style="display:block;" src="./image/1289839816.jpg" alt="작품사진" width="100%" height="200px">
-        <div class="box-row">
-          <h6 style="display:block;float:left;">결혼</h6>
-            <p style="display:block; float:right;">by 유현경</p>
-        </div>
-      </div>
+    <?php
+                  // 테이블에서 새로등록된 작품 가져오는 쿼리문 작성
+                    $sql = "SELECT * FROM artwork_with_stid ORDER BY artwork_hit DESC LIMIT 6";
+                    $result=mysqli_query($conn,$sql);
+                    while($row2 = mysqli_fetch_assoc($result)){
+                    $image_dir=".\\view\account\memberimg\\".$row2['member_stid']."\\img\\";
+                    $image_path=$image_dir.$row2['artwork_image'];
+
+                    echo '<div class="product"><a href=./artwork_detail.php?id=';
+                    echo $row2['artwork_id'];
+                    echo '>';
+                    echo '<img src=';
+                    echo $image_path;
+                    echo ' , alt="이미지를 불러올 수 없습니다" ';
+                    echo 'style="height:250px;"></a>';
+                    echo '<div class="box-row">';
+                    echo '<h6 style="display:block;float:left;">';
+                    echo $row2['artwork_title'];
+                    echo '</h6>';
+                    echo '<p style="display:block; float:right;">₩ ';
+                    echo $row2['artwork_price'];
+                    echo '</p>';
+                    echo '</div>';
+                    echo '</div>';
+      }
+      ?>
+    </div>
     </div>
   </section>
 </div>

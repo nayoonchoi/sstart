@@ -30,7 +30,7 @@
                                 <div class="box">
                                    <ul class="nav nav-pills flex-column" style="font-weight:bolder; height:35px;">
                                     <li class="nav-item" style="display:flex; align-items: center;">
-                                      <a class="nav-link " href="#"style="color:#282f3a;">등록된 작품</a>
+                                      <a class="nav-link " href="#"style="color:#282f3a;">장바구니</a>
                                     <li>
                                     <ul>
                                 </div>
@@ -55,18 +55,7 @@
 
                 </div>
               </section>
-              <div id="page">
-              <div class="pagination">
-                <a href="#">&laquo;</a>
-                <a href="#">1</a>
-                <a class="active" href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#">6</a>
-                <a href="#">&raquo;</a>
-              </div>
-            </div>
+
             </main>
 
         </section>

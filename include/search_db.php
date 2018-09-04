@@ -21,9 +21,52 @@ $search_word =$_REQUEST['search_word'];
 
 
 
-$sql = "SELECT * FROM artwork where artwork_title LIKE '%$search_word%' ";
-  $rs = mysqli_query($conn,$sql);
+$sql = "SELECT * FROM artwork_with_stid where artwork_title LIKE '%$search_word%' ";
+$rs = mysqli_query($conn,$sql);
+$num= mysqli_num_rows($rs);//상품 총 갯수
 
+if(isset($_GET['page']))
+                    {
+                      $page = ($_GET['page']);
+                    }
+                    else {
+                      $page=1;
+                    }
+
+                    $list = 5;
+
+                    $block = ceil($page/5);
+                    $total_page = ceil($num/$list); // 총 페이지
+                    $blockNum = ceil($total_page/$block); // 총 블록
+                    $nowBlock = ceil($page/$block);
+
+                    //$s_page = ($nowBlock * $block) - 2;
+                    $s_page=( ($block - 1) *5) + 1;
+                    if ($s_page <= 1) {
+                        $s_page = 1;
+                    }
+                    $e_page = $s_page+5-1;
+                    if ($total_page <= $e_page) {
+                        $e_page = $total_page;
+                    }
+
+
+                    //$row1 = mysqli_fetch_assoc($result);
+                    /*
+                    echo "현재 페이지는".$page."<br/>";
+                    echo "현재 블록은".$nowBlock."<br/>";
+
+                    echo "현재 블록의 시작 페이지는".$s_page."<br/>";
+                    echo "현재 블록의 끝 페이지는".$e_page."<br/>";
+
+                    echo "총 페이지는".$total_page."<br/>";
+                    echo "총 블록은".$blockNum."<br/>";
+                    */
+
+                    $s_point = ($page-1) * $list;
+
+$sql = "SELECT * FROM artwork_with_stid where artwork_title LIKE '%$search_word%'  LIMIT $s_point,$list";
+$rs = mysqli_query($conn,$sql);
 ?>
 <!doctype>
 <html>
@@ -59,28 +102,39 @@ if(mysqli_num_rows($rs)==0)
   echo "일치하는 검색 결과가 없습니다. 띄어쓰기 및 맞춤법 확인해주세요";
 }
 else{
-  echo '<table>';
 
-while($info = mysqli_fetch_array($rs)){
+ for ($i=1; $i<=mysqli_num_rows($rs);$i++) {
+            $info = mysqli_fetch_array($rs);
+            //echo '<tr>';
+            echo '<product>';
 
-            echo '<tr>';
+            echo "작품 이름: ".$info['artwork_title'];  echo "<br/>\n";
 
-            echo '<th>'.$info['artwork_title']."</th>";
+            echo "작품 가격: ".$info['artwork_price'];  echo "<br/>\n";
 
-            echo '<td>'.$info['artwork_price']."</td>";
+            echo "작품 종류: ".$info['artwork_kinds'];  echo "<br/>\n";
 
-            echo '<td>'.$info['artwork_kinds']."</td>";
-
-            echo '<td>'.'<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="';
+            echo '<div><button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#' ;
             echo  htmlspecialchars($info['artwork_id']);
-            echo '">Simple collapsible</button>';
+            echo '"style =" width:130px">작품 상세보기</button></div>';
+            echo '</product>';
 
-            echo '</tr>';
+           // echo '</tr>';
+
             echo '<div id="';
             echo htmlspecialchars($info['artwork_id']);
-            echo '" class="collapse show">';
-            echo "<div class=\"product-description\">";
-            echo "<description1>";
+            echo '" class="collapse">';
+            $image_dir="..\\view\account\memberimg\\".$info['member_stid']."\\img\\";
+              $image_path=$image_dir.$info['artwork_image'];
+              echo "<div class=\"product-row\" >";
+              echo '<img src=';
+              echo $image_path;
+              echo ' , alt="이미지를 등록해 주세요" ';
+              echo 'style= "width:250px; height:250px;">';
+              echo "<div class=\"product\">";
+              echo "<div class=\"product-box\">";
+              echo "<div class=\"product-description\">";
+              echo "<description1>";
             echo "작품 재질: ".htmlspecialchars($info['artwork_materials']);  echo "<br/>\n";
             echo "작품 크기: ".htmlspecialchars($info['artwork_size']);  echo "<br/>\n";
             echo "만든 날짜: ".htmlspecialchars($info['artwork_workdate']);  echo "<br/>\n";
@@ -101,11 +155,27 @@ while($info = mysqli_fetch_array($rs)){
 
             echo "</div>";//product-description 끝
             echo '</div>';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
 
 }
-echo '</table>';
+echo '</product>';
 }
 ?>
+<div id="page">
+              <div class="pagination">
+                <?php
+                                for ($p=$s_page; $p<=$e_page; $p++) {
+                                ?>
+
+                                    <a href="<?="http://localhost/HI_ART/include/search_db.php"?>?search_word=<?=$search_word?>&page=<?=$p?>"><?=$p?></a>
+
+                                <?php
+                                }
+                                ?>
+              </div>
+            </div>
 </main>
 
 </section>

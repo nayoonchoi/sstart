@@ -47,27 +47,80 @@
 
                     //전시정보 테이블에서 가져오는 쿼리문 작성
                     $sql = "SELECT * FROM exhibition";
-
+                    $num=0;
+                    $timenow = date("Y-m-d");
+                    $str_now = strtotime($timenow);
                     //쿼리실행
                     $result=mysqli_query($conn,$sql);
+
+                    while($row2 = mysqli_fetch_assoc($result))
+                        {
+
+                          $timetarget1 = $row2['exhibit_sdate'];
+                          $timetarget2 = $row2['exhibit_edate'];
+
+
+                          $str_target1 = strtotime($timetarget1);
+                          $str_target2 = strtotime($timetarget2);
+
+                          if(($str_target1 <= $str_now) && ($str_now <= $str_target2)){
+                            $num++;
+                           }
+                          }
+
+                     if(isset($_GET['page']))
+                    {
+                      $page = ($_GET['page']);
+                    }
+                    else {
+                      $page=1;
+                    }
+
+                    $list = 5;
+
+                    $block = ceil($page/5);
+                    $total_page = ceil($num/$list); // 총 페이지
+                    $blockNum = ceil($total_page/$block); // 총 블록
+                    $nowBlock = ceil($page/$block);
+
+                    //$s_page = ($nowBlock * $block) - 2;
+                    $s_page=( ($block - 1) *5) + 1;
+                    if ($s_page <= 1) {
+                        $s_page = 1;
+                    }
+                    $e_page = $s_page+5-1;
+                    if ($total_page <= $e_page) {
+                        $e_page = $total_page;
+                    }
+
+
+                    //$row1 = mysqli_fetch_assoc($result);
+                    /*
+                    echo "현재 페이지는".$page."<br/>";
+                    echo "현재 블록은".$nowBlock."<br/>";
+
+                    echo "현재 블록의 시작 페이지는".$s_page."<br/>";
+                    echo "현재 블록의 끝 페이지는".$e_page."<br/>";
+
+                    echo "총 페이지는".$total_page."<br/>";
+                    echo "총 블록은".$blockNum."<br/>";
+                    */
+
+                    $s_point = ($page-1) * $list;
+
                     echo '현재 날짜: ';
                     date_default_timezone_set("Asia/Seoul");
                     echo date("Y-m-d"); echo "<br/>\n";
                     $swhich = 0;
 
-                    if(mysqli_num_rows($result) >0)
-                    {
-                        while($row2 = mysqli_fetch_assoc($result))
-                        {
-                          $timenow = date("Y-m-d");
-                          $timetarget1 = $row2['exhibit_sdate'];
-                          $timetarget2 = $row2['exhibit_edate'];
+                    $sql = "SELECT * FROM exhibition WHERE exhibit_sdate <= date(now()) AND exhibit_edate >= date(now()) LIMIT $s_point,$list";
+                    $result=mysqli_query($conn,$sql);
 
-                          $str_now = strtotime($timenow);
-                          $str_target1 = strtotime($timetarget1);
-                          $str_target2 = strtotime($timetarget2);
+                   for ($i=1; $i<=mysqli_num_rows($result);$i++) {
 
-                          if(($str_target1 <= $str_now) && ($str_now <= $str_target2)){
+                        $row2 = mysqli_fetch_assoc($result);
+
+
 
                           $image_dir="..\..\show_img\\";
                           $image_path=$image_dir.$row2['exhibit_image'];
@@ -103,8 +156,8 @@
                           echo "</div>";
                           echo "</div>";
                           $swhich = 1;
-                          }
-                        }
+
+
                     }
                     if($swhich = 0){
                       echo "<p>등록된 전시회가 없습니다.</p>";  echo "<br/>\n";
@@ -120,14 +173,15 @@
               </section>
               <div id="page">
               <div class="pagination">
-                <a href="#">&laquo;</a>
-                <a href="#">1</a>
-                <a class="active" href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#">6</a>
-                <a href="#">&raquo;</a>
+                <?php
+                                for ($p=$s_page; $p<=$e_page; $p++) {
+                                ?>
+
+                                    <a href="<?="http://localhost/HI_ART/view/navbar/exing_info.php"?>?page=<?=$p?>"><?=$p?></a>
+
+                                <?php
+                                }
+                                ?>
               </div>
             </div>
             </main>

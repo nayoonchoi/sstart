@@ -221,7 +221,9 @@ $result = $db->query($sql);
       <div  id="banner-left">
       <?php require('../../../include/main_banner_left.php'); ?>
       </div>
+
        <main>
+				 <centerbox>
          	<meta charset="utf-8" />
          	<title>request게시판 | request WRITE</title>
          	<link rel="stylesheet" href="./normalize.css" />
@@ -350,8 +352,9 @@ $result = $db->query($sql);
 
          </body>
 
-
+</centerbox>
        </main>
+
     </section>
   </div>
   <div >

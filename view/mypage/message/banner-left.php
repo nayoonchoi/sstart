@@ -4,9 +4,10 @@
 		          <li class="nav-item">
 			          <a class="nav-link" href="../mypage.php"style="color:#282f3a;">회원정보 수정</a>
 		         </li>
-		         <li class="nav-item">
+		        <!-- <li class="nav-item">
 			        <a class="nav-link" href="../bought.php"style="color:#282f3a;">구매한 작품</a>
 		         </li>
+					 -->
 		         <li class="nav-item">
 			        <a class="nav-link" href="../cart.php"style="color:#282f3a;">장바구니</a>
 		         </li>

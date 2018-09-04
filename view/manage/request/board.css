@@ -16,7 +16,7 @@
 .boardArticle table {width: 720px;}
 
 .boardArticle th {padding: 5px 0; border-top: 2px solid #666; border-bottom: 1px solid #666;}
-.boardArticle tr: hover {background: #eee;}
+/*.boardArticle tr: hover {background: #eee;}*/
 .boardArticle td {padding: 8px 0; border-bottom: 1px solid #666;}
 
 .boardArticle .no {width: 60px; text-align: center;}

@@ -25,6 +25,15 @@ min-width: 1200px;
   font-family: 'Jua', sans-serif;
 
 }
+.container2 li{
+  display: block;
+}
+.wrap{
+/*width:1000px;
+height:300px;
+display:inline;*/
+overflow-x:scroll;
+}
 .container-row{
   display:flex;
   flex-direction: row;
@@ -66,7 +75,8 @@ footer a{
 }
 .content{
     display:flex;
-
+    flex-direction: row;
+    justify-content: space-between;
     margin: 10px;
 }
 .content nav{
@@ -114,7 +124,7 @@ main{
     border-left: 1px solid #282f3a;
     border-right:1px solid #282f3a;
     display: flex;
-    justify-content: center;
+
     flex-direction: column;
 }
 
@@ -138,6 +148,21 @@ flex-direction:column;
 justify-content:space-around;
 
 }
+.product3{
+display:flex;
+flex-direction:column;
+justify-content:space-around;
+width: 244px;
+
+}
+.product3 img{
+  padding:5px;
+  height:250px;
+  width: 250px;
+
+
+}
+
 .product-row{
   display:flex;
   flex-direction:row;
@@ -149,7 +174,14 @@ justify-content:space-around;
 }
 .product img{
 padding:5px;
+height:250px;
+width: auto;
+margin:2px;
 
+}
+contentbox{
+  display: flex;
+  flex-wrap: wrap;
 }
 .product-row img{
 
@@ -158,6 +190,9 @@ padding:5px;
 .product h6,p{display:inline-block;}
 .product-box{
   width:560px;
+}
+.product-box .des{
+  padding:5px;
 }
 .product-description{
   display:flex;
@@ -302,7 +337,7 @@ img#blah {
 /* Close button on hover */
 .close:hover,
 .close:focus {
-    color: red;
+  /*  color: red;*/
     cursor: pointer;
 }
 

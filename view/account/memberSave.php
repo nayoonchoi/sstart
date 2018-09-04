@@ -34,19 +34,6 @@ if(mysqli_connect_errno())
  echo $_POST['email'];echo "<br/>\n";
 */
 
-$path="..\account\memberimg\\".$stid;
-mkdir($path);
-$path2="..\account\memberimg\\".$stid."\\img";
-mkdir($path2);
-//받은 이미지 파일 처리
-$member_image1=$_FILES['image']['name'];//이미지 이름
-$member_image=preg_replace("/\s+/","",$member_image1);
-//$target=$path.$member_image;//이미지를 저장할 경로
-$target="..\account\memberimg\\".$stid."\\".$member_image;
-$tmp_name=$_FILES['image']['tmp_name'];//이미지가 임시로 저장되는 경로
-
-move_uploaded_file($tmp_name,$target);//임시 경로에 잇는 파일을 지정한 위치로 이동
-//이미지가 해당 파일에 저장됨 $target에는 진짜 저장된 이미지 경로가 저장됨
 
 if(strlen($_POST['password1']) < 8)//비밀번호 8자 이하일수 없음
 {
@@ -141,6 +128,21 @@ else {
       exit;
   }
   else {
+
+    $path="..\account\memberimg\\".$stid;
+    mkdir($path);
+    $path2="..\account\memberimg\\".$stid."\\img";
+    mkdir($path2);
+    //받은 이미지 파일 처리
+    $member_image1=$_FILES['image']['name'];//이미지 이름
+    $member_image=preg_replace("/\s+/","",$member_image1);
+    //$target=$path.$member_image;//이미지를 저장할 경로
+    $target="..\account\memberimg\\".$stid."\\".$member_image;
+    $tmp_name=$_FILES['image']['tmp_name'];//이미지가 임시로 저장되는 경로
+
+    move_uploaded_file($tmp_name,$target);//임시 경로에 잇는 파일을 지정한 위치로 이동
+    //이미지가 해당 파일에 저장됨 $target에는 진짜 저장된 이미지 경로가 저장됨
+    
     $sql = "insert into member( member_username,member_pw,member_name, member_nickname, member_phone, member_stid, member_gender,member_email,member_image)";
     $sql = $sql. "values('$username','$password','$name','$nickname','$phone','$stid','$gendertype','$email','$member_image')";
 
@@ -152,6 +154,7 @@ else {
     }
   }
 }
+
 mysqli_close($conn);
 
 header('Location: ./registered.php');

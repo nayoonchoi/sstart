@@ -224,9 +224,10 @@ $result = $db->query($sql);
 
     <section class="content" >
 			<div  id="banner-left">
-					<?php require('./banner-left.php');?>
+					<?php require('../banner-left.php');?>
 			</div>
 			 <main>
+         <centerbox>
          	<meta charset="utf-8" />
          	<title>쪽지함 | MESSAGE WRITE</title>
          	<link rel="stylesheet" href="./normalize.css" />
@@ -368,7 +369,7 @@ $result = $db->query($sql);
 
          </body>
 
-
+       </centerbox>
        </main>
     </section>
   </div>

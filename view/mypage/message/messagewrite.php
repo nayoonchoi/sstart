@@ -71,6 +71,7 @@
       <?php require('../../../include/main_banner_left.php'); ?>
       </div>
        <main>
+				 <centerbox>
          <head>
 
          	<meta charset="utf-8" />
@@ -183,7 +184,7 @@
          	</article>
 
          </body>
-
+			 </centerbox>
        </main>
     </section>
   </div>
